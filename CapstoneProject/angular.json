@@ -118,5 +118,10 @@
       }
     }
   },
-  "defaultProject": "CapstoneProject"
+  "defaultProject": "CapstoneProject",
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "scss"
+    }
+  }
 }
