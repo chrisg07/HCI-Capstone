@@ -113,8 +113,6 @@ export class BodyComponent implements OnInit {
 
     console.log(county);
     console.log(bounds);
-    //his.myCountyProjection
-    //    .translate([this.county1Width / 2 - (bounds[0][0] + bounds[1][0]) / 2, this.county1Height / 2 - (bounds[0][1] + bounds[1][1]) / 2]);
 
     this.county1SVG.append('path')
         .datum(county)
