@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import * as d3 from 'd3';
 import * as topojson from 'topojson';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'app-body',
@@ -15,12 +18,15 @@ export class BodyComponent implements OnInit {
   private countyPath;
   private virginia;
   private counties;
-  private countiesList;
+  public countiesList;
   private width = 960;
   private height = 500;
   private county1SVG;
   private county1Width = 400;
   private county1Height = 200;
+  private myControl = new FormControl();
+  private autocompleteOptions: string[] = new Array<string>();
+  private filteredOptions: Observable<string[]>;
 
   constructor() { }
 
@@ -43,13 +49,18 @@ export class BodyComponent implements OnInit {
       .translate([0, 0]);
 
     this.path = d3.geoPath().projection(this.myProjection);
-    
     // load TopoJSON data
     d3.json('../../assets/va-counties.json').then((value) => {
       this.counties = value;
       this.virginia = value;
       this.buildCountiesList(this.virginia);
       this.drawMap(this.virginia);
+      this.autocompleteOptions = Object.keys(this.countiesList);
+      this.filteredOptions = this.myControl.valueChanges
+      .pipe(
+        startWith(''),
+        map(filterValue => this._filter(filterValue))
+      );
     });
   }
 
@@ -81,7 +92,6 @@ export class BodyComponent implements OnInit {
       .attr('stroke-linejoin', 'round')
       .attr('stroke-linecap', 'round');
 
-      console.log(this.countiesList);
       this.drawCounty('Frederick County');
   }
 
@@ -101,18 +111,11 @@ export class BodyComponent implements OnInit {
       }
     });
     this.counties.objects.counties.geometries = geoCounty;
-    console.log(this.virginia);
-    console.log(this.counties);
     const county = topojson.feature(this.counties, this.counties.objects.counties);
-    
     this.myCountyProjection = d3.geoIdentity()
       .fitSize([this.county1Width, this.county1Height], county);
       this.countyPath = d3.geoPath().projection(this.myCountyProjection);
       const bounds = this.countyPath.bounds(county);
-    // console.log(geoCounty);
-
-    console.log(county);
-    console.log(bounds);
 
     this.county1SVG.append('path')
         .datum(county)
@@ -120,5 +123,10 @@ export class BodyComponent implements OnInit {
         .attr('d', this.countyPath)
         .attr('fill', '#ccc')
         .attr('stroke', '#ccc');
+  }
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    return this.autocompleteOptions.filter(option => option.toLowerCase().includes(filterValue));
   }
 }
