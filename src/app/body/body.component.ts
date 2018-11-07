@@ -4,6 +4,7 @@ import * as d3 from 'd3';
 import * as topojson from 'topojson';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
+import { HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-body',
@@ -11,6 +12,7 @@ import { map, startWith } from 'rxjs/operators';
   styleUrls: ['./body.component.scss']
 })
 export class BodyComponent implements OnInit {
+
   private svg;
   private myProjection;
   private myCountyProjection;
@@ -19,26 +21,39 @@ export class BodyComponent implements OnInit {
   private virginia;
   private counties;
   public countiesList;
-  private width = 960;
-  private height = 500;
+  public width = 960;
+  public height = 500;
   private county1SVG;
   private county1Width = 400;
   private county1Height = 200;
-  private myControl = new FormControl();
+  public myControl = new FormControl();
   private autocompleteOptions: string[] = new Array<string>();
-  private filteredOptions: Observable<string[]>;
+  public filteredOptions: Observable<string[]>;
+  private resizeTimeout;
+  private geoCounty;
 
+  @HostListener('window:resize')
+    onWindowResize() {
+        // debounce resize, wait for resize to finish before doing stuff
+        if (this.resizeTimeout) {
+            clearTimeout(this.resizeTimeout);
+        }
+        this.resizeTimeout = setTimeout((() => {
+            console.log(window.innerWidth);
+        }).bind(this), 500);
+    }
   constructor() { }
 
   ngOnInit() {
     this.countiesList = [];
-    this.svg = d3.select('app-body')
+    this.svg = d3.select('.Virginia')
       .append('svg')
       .attr('width', this.width)
       .attr('height', this.height);
 
-    this.county1SVG = d3.select('app-body')
+    this.county1SVG = d3.select('.firstCountyContainer')
       .append('svg')
+      .attr('class', 'firstCounty')
       .attr('width', this.county1Width)
       .attr('height', this.county1Height);
 
@@ -91,42 +106,72 @@ export class BodyComponent implements OnInit {
       .attr('stroke-width', '1.01px')
       .attr('stroke-linejoin', 'round')
       .attr('stroke-linecap', 'round');
-
-      this.drawCounty('Frederick County');
   }
 
   private buildCountiesList(state) {
     for (const county of state.objects.counties.geometries) {
-      const newCounty = {[county.properties.name] : county};
       this.countiesList[county.properties.name] = county;
     }
     console.log(this.countiesList);
   }
 
   private drawCounty(name: string) {
-    const curCounty = this.countiesList[name];
-    const geoCounty = this.counties.objects.counties.geometries.filter(function(d) {
+    console.log(this.counties.objects.counties.geometries);
+    this.geoCounty = this.counties.objects.counties.geometries.filter(function(d) {
       if (d.properties.name === name) {
+        console.log(d);
         return d;
       }
     });
-    this.counties.objects.counties.geometries = geoCounty;
-    const county = topojson.feature(this.counties, this.counties.objects.counties);
-    this.myCountyProjection = d3.geoIdentity()
-      .fitSize([this.county1Width, this.county1Height], county);
-      this.countyPath = d3.geoPath().projection(this.myCountyProjection);
-      const bounds = this.countyPath.bounds(county);
+    /*
+    for (const county of this.counties.objects.counties.geometries) {
+      console.log(county);
+      if (county.properties.name === name) {
+        console.log(county);
+        this.geoCounty = county;
+      }
+    }
+    */
+    if (this.geoCounty) {
+      this.clearFirstCounty();
 
-    this.county1SVG.append('path')
+      this.counties.objects.counties.geometries = this.geoCounty;
+      const county = topojson.feature(this.counties, this.counties.objects.counties);
+      this.myCountyProjection = d3.geoIdentity()
+        .reflectY(true)
+        .fitSize([this.county1Width, this.county1Height], county);
+
+      this.countyPath = d3.geoPath().projection(this.myCountyProjection);
+      this.county1SVG = d3.select('.firstCountyContainer')
+        .append('svg')
+        .attr('class', 'firstCounty')
+        .attr('width', this.county1Width)
+        .attr('height', this.county1Height);
+
+      this.county1SVG.append('path')
         .datum(county)
         .attr('class', 'county')
         .attr('d', this.countyPath)
         .attr('fill', '#ccc')
         .attr('stroke', '#ccc');
+    }
+    this.counties.objects = this.virginia.objects;
+    console.log(this.counties);
+  }
+
+  private clearFirstCounty() {
+    this.county1SVG.remove();
   }
 
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
-    return this.autocompleteOptions.filter(option => option.toLowerCase().includes(filterValue));
+    console.log(this.myControl['value']);
+    const results = this.autocompleteOptions.filter(option => option.toLowerCase().includes(filterValue));
+    if (results.length === 1 && results[0].toLowerCase() === filterValue) {
+      console.log('new county was drawn');
+      console.log(results[0]);
+      this.drawCounty(results[0]);
+    }
+    return results;
   }
 }
