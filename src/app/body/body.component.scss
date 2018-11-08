@@ -1,5 +1,5 @@
-svg.state {
-    fill: #ccc;
+svg.VirginiaMap {
+    margin: 0 auto 0 auto;
 }
 
 .Virginia {
@@ -13,4 +13,39 @@ svg.county-border {
     stroke-linejoin: round;
     stroke-linecap: round;
 }
-  
+
+.autocompleteDropdownContainer {
+    display: flex;
+    width: 100%;
+}
+
+form {
+    width: 100%;
+
+    mat-form-field {
+        width: 80%;
+    }
+}
+
+.countyComparisonContainer {
+    display: flex;
+    width: 100%;
+
+    .firstCountyContainer {
+        width: 25%;
+    }
+
+    .firstCountyDataContainer {
+        width: 25%;
+        border: solid 1px black;
+    }
+
+    .secondCountyContainer {
+        width: 25%;
+    }
+
+    .secondCountyDataContainer {
+        width: 25%;
+        border: solid 1px black;
+    }
+}

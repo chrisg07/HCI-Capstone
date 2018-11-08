@@ -21,11 +21,11 @@ export class BodyComponent implements OnInit {
   private virginia;
   private counties;
   public countiesList;
-  public width = 960;
-  public height = 500;
+  public stateWidth = 960;
+  public stateHeight = 500;
   private county1SVG;
-  private county1Width = 400;
-  private county1Height = 200;
+  public firstCountyWidth;
+  public firstCountyHeight;
   public myControl = new FormControl();
   private autocompleteOptions: string[] = new Array<string>();
   public filteredOptions: Observable<string[]>;
@@ -40,28 +40,36 @@ export class BodyComponent implements OnInit {
         }
         this.resizeTimeout = setTimeout((() => {
             console.log(window.innerWidth);
+            console.log(this.firstCountyHeight);
+            console.log(this.firstCountyWidth);
+            this.stateWidth = window.innerWidth * .75;
+            this.stateHeight = this.stateWidth * .521;
+            /*
+            const stateOutline = topojson.feature(this.virginia, this.virginia.objects.states);
+            const counties = this.path.bounds(stateOutline);
+            this.myProjection
+              .translate([this.stateWidth / 2 -
+                (counties[0][0] + counties[1][0]) / 2, this.stateHeight / 2 - (counties[0][1] + counties[1][1]) / 2]);
+            d3.select('.Virginia')
+              .attr('width', this.stateWidth)
+              .attr('height', this.stateHeight);
+            d3.select('.VirginiaMap')
+              .attr('width', this.stateWidth)
+              .attr('height', this.stateHeight);
+            */
+           this.drawMap(this.virginia);
         }).bind(this), 500);
     }
   constructor() { }
 
   ngOnInit() {
     this.countiesList = [];
-    this.svg = d3.select('.Virginia')
-      .append('svg')
-      .attr('width', this.width)
-      .attr('height', this.height);
 
     this.county1SVG = d3.select('.firstCountyContainer')
       .append('svg')
       .attr('class', 'firstCounty')
-      .attr('width', this.county1Width)
-      .attr('height', this.county1Height);
-
-    this.myProjection = d3.geoConicConformal()
-      .parallels([38 + 2 / 60, 39 + 12 / 60])
-      .rotate([78 + 30 / 60, 0])
-      .scale(8000)
-      .translate([0, 0]);
+      .attr('width', this.firstCountyWidth)
+      .attr('height', this.firstCountyHeight);
 
     this.path = d3.geoPath().projection(this.myProjection);
     // load TopoJSON data
@@ -90,11 +98,19 @@ export class BodyComponent implements OnInit {
    * @param state the TopoJSON to draw
    */
   private drawMap(state) {
+    this.clearStateMap();
+    this.svg = d3.select('.Virginia')
+      .append('svg')
+      .attr('class', 'VirginiaMap')
+      .attr('width', this.stateWidth)
+      .attr('height', this.stateHeight);
+
     const stateOutline = topojson.feature(state, state.objects.states);
     const counties = this.path.bounds(stateOutline);
-    this.myProjection
-      .translate([this.width / 2 - (counties[0][0] + counties[1][0]) / 2, this.height / 2 - (counties[0][1] + counties[1][1]) / 2]);
-
+    this.myProjection = d3.geoIdentity()
+        .reflectY(true)
+        .fitSize([this.stateWidth, this.stateHeight], stateOutline);
+      this.path = d3.geoPath().projection(this.myProjection);
     this.svg.append('path')
       .datum(stateOutline)
       .attr('class', 'state')
@@ -136,14 +152,14 @@ export class BodyComponent implements OnInit {
       const county = topojson.feature(this.counties, this.counties.objects.counties);
       this.myCountyProjection = d3.geoIdentity()
         .reflectY(true)
-        .fitSize([this.county1Width, this.county1Height], county);
+        .fitSize([this.firstCountyWidth, this.firstCountyHeight], county);
 
       this.countyPath = d3.geoPath().projection(this.myCountyProjection);
       this.county1SVG = d3.select('.firstCountyContainer')
         .append('svg')
         .attr('class', 'firstCounty')
-        .attr('width', this.county1Width)
-        .attr('height', this.county1Height);
+        .attr('width', this.firstCountyWidth)
+        .attr('height', this.firstCountyHeight);
 
       this.county1SVG.append('path')
         .datum(county)
@@ -159,6 +175,10 @@ export class BodyComponent implements OnInit {
 
   private clearFirstCounty() {
     this.county1SVG.remove();
+  }
+
+  private clearStateMap() {
+    d3.select('.VirginiaMap').remove();
   }
 
   private _filter(value: string): string[] {

@@ -1,16 +1,39 @@
-<div class='Virginia' [style.width.px]="width">
+<div class='Virginia' [style.width.px]='stateWidth' [style.height.px]='stateHeight'>
 
 </div>
-<form class="example-form">
-    <mat-form-field class="example-full-width">
-        <input type="text" placeholder="Select a county" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
-        <mat-autocomplete #auto="matAutocomplete">
-            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-            {{option}}
-            </mat-option>
-        </mat-autocomplete>
-    </mat-form-field>
-</form>
-<div class='firstCountyContainer'>
-    
+<div class='autocompleteDropdownContainer'>
+    <form class="firstCounty-form">
+        <mat-form-field>
+            <input type="text" placeholder="Select a county" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                {{option}}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </form>
+    <form class="secondCounty-form">
+        <mat-form-field>
+            <input type="text" placeholder="Select another county" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                {{option}}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </form>
+</div>
+<div class='countyComparisonContainer'>
+    <div class='firstCountyContainer' (style.width.px)="firstCountyWidth" (style.height.px)="firstCountyHeight">
+        
+    </div>
+    <div class='firstCountyDataContainer'>
+        
+    </div>
+    <div class='secondCountyContainer'>
+        
+    </div>
+    <div class='secondCountyDataContainer'>
+        
+    </div>
 </div>
