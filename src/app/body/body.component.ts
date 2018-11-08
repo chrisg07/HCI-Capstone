@@ -66,8 +66,8 @@ export class BodyComponent implements OnInit {
     this.path = d3.geoPath().projection(this.myProjection);
     // load TopoJSON data
     d3.json('../../assets/va-counties.json').then((value) => {
-      this.counties = value;
       this.virginia = value;
+      this.counties = this.virginia;
       this.buildCountiesList(this.virginia);
       this.drawMap(this.virginia);
       this.autocompleteOptions = Object.keys(this.countiesList);
@@ -79,6 +79,12 @@ export class BodyComponent implements OnInit {
     });
   }
 
+  private getMapData() {
+    d3.json('../../assets/va-counties.json').then((value) => {
+      this.virginia = value;
+      this.counties = this.virginia;
+    });
+  }
   /**
    * Draw a map from TopoJSON data
    * @param state the TopoJSON to draw
@@ -86,7 +92,6 @@ export class BodyComponent implements OnInit {
   private drawMap(state) {
     const stateOutline = topojson.feature(state, state.objects.states);
     const counties = this.path.bounds(stateOutline);
-    console.log(this.counties);
     this.myProjection
       .translate([this.width / 2 - (counties[0][0] + counties[1][0]) / 2, this.height / 2 - (counties[0][1] + counties[1][1]) / 2]);
 
@@ -112,30 +117,22 @@ export class BodyComponent implements OnInit {
     for (const county of state.objects.counties.geometries) {
       this.countiesList[county.properties.name] = county;
     }
-    console.log(this.countiesList);
   }
 
   private drawCounty(name: string) {
-    console.log(this.counties.objects.counties.geometries);
-    this.geoCounty = this.counties.objects.counties.geometries.filter(function(d) {
-      if (d.properties.name === name) {
-        console.log(d);
-        return d;
-      }
-    });
-    /*
-    for (const county of this.counties.objects.counties.geometries) {
-      console.log(county);
+    for (const county of this.virginia.objects.counties.geometries) {
       if (county.properties.name === name) {
+        console.log('county found in virginia geometries');
         console.log(county);
         this.geoCounty = county;
+        break;
       }
     }
-    */
     if (this.geoCounty) {
       this.clearFirstCounty();
-
-      this.counties.objects.counties.geometries = this.geoCounty;
+      this.counties.objects.counties = this.geoCounty;
+      console.log(this.counties);
+      console.log(this.counties.objects.counties);
       const county = topojson.feature(this.counties, this.counties.objects.counties);
       this.myCountyProjection = d3.geoIdentity()
         .reflectY(true)
@@ -155,8 +152,9 @@ export class BodyComponent implements OnInit {
         .attr('fill', '#ccc')
         .attr('stroke', '#ccc');
     }
-    this.counties.objects = this.virginia.objects;
-    console.log(this.counties);
+    // reinstates this.virginia so the geometries can be searched through again
+    // work around for the data being consumed for some reason I don't fully understand
+    this.getMapData();
   }
 
   private clearFirstCounty() {
@@ -165,11 +163,8 @@ export class BodyComponent implements OnInit {
 
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
-    console.log(this.myControl['value']);
     const results = this.autocompleteOptions.filter(option => option.toLowerCase().includes(filterValue));
     if (results.length === 1 && results[0].toLowerCase() === filterValue) {
-      console.log('new county was drawn');
-      console.log(results[0]);
       this.drawCounty(results[0]);
     }
     return results;
