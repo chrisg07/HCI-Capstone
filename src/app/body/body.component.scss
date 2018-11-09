@@ -3,15 +3,8 @@ svg.VirginiaMap {
 }
 
 .Virginia {
+    width: calc(75% + 135px);
     margin: 0 auto 0 auto;
-}
-
-svg.county-border {
-    fill: none;
-    stroke: #fff;
-    stroke-width: 1.01px;
-    stroke-linejoin: round;
-    stroke-linecap: round;
 }
 
 .autocompleteDropdownContainer {

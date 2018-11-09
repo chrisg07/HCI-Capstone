@@ -1,0 +1,672 @@
+[
+  {
+    "countycode": 51001,
+    "countyname": "Accomack County",
+    "ratio": 0.66
+  },
+  {
+    "countycode": 51003,
+    "countyname": "Albemarle County",
+    "ratio": 0.9
+  },
+  {
+    "countycode": 51005,
+    "countyname": "Alleghany County",
+    "ratio": 0.69
+  },
+  {
+    "countycode": 51007,
+    "countyname": "Amelia County",
+    "ratio": 0.63
+  },
+  {
+    "countycode": 51009,
+    "countyname": "Amherst County",
+    "ratio": 0.54
+  },
+  {
+    "countycode": 51011,
+    "countyname": "Appomattox County",
+    "ratio": 0.42
+  },
+  {
+    "countycode": 51013,
+    "countyname": "Arlington County",
+    "ratio": -9999
+  },
+  {
+    "countycode": 51015,
+    "countyname": "Augusta County",
+    "ratio": 0.6
+  },
+  {
+    "countycode": 51017,
+    "countyname": "Bath County",
+    "ratio": 0.67
+  },
+  {
+    "countycode": 51019,
+    "countyname": "Bedford County",
+    "ratio": 0.61
+  },
+  {
+    "countycode": 51021,
+    "countyname": "Bland County",
+    "ratio": 0.57
+  },
+  {
+    "countycode": 51023,
+    "countyname": "Botetourt County",
+    "ratio": 0.67
+  },
+  {
+    "countycode": 51025,
+    "countyname": "Brunswick County",
+    "ratio": 0.38
+  },
+  {
+    "countycode": 51027,
+    "countyname": "Buchanan County",
+    "ratio": 0.37
+  },
+  {
+    "countycode": 51029,
+    "countyname": "Buckingham County",
+    "ratio": 0.55
+  },
+  {
+    "countycode": 51031,
+    "countyname": "Campbell County",
+    "ratio": 0.63
+  },
+  {
+    "countycode": 51033,
+    "countyname": "Caroline County",
+    "ratio": 0.53
+  },
+  {
+    "countycode": 51035,
+    "countyname": "Carroll County",
+    "ratio": 0.62
+  },
+  {
+    "countycode": 51036,
+    "countyname": "Charles City County",
+    "ratio": 0.41
+  },
+  {
+    "countycode": 51037,
+    "countyname": "Charlotte County",
+    "ratio": 0.34
+  },
+  {
+    "countycode": 51041,
+    "countyname": "Chesterfield County",
+    "ratio": -9999
+  },
+  {
+    "countycode": 51043,
+    "countyname": "Clarke County",
+    "ratio": 0.62
+  },
+  {
+    "countycode": 51045,
+    "countyname": "Craig County",
+    "ratio": 0.61
+  },
+  {
+    "countycode": 51047,
+    "countyname": "Culpeper County",
+    "ratio": 0.74
+  },
+  {
+    "countycode": 51049,
+    "countyname": "Cumberland County",
+    "ratio": 0.4
+  },
+  {
+    "countycode": 51051,
+    "countyname": "Dickenson County",
+    "ratio": 0.5
+  },
+  {
+    "countycode": 51053,
+    "countyname": "Dinwiddie County",
+    "ratio": 0.49
+  },
+  {
+    "countycode": 51057,
+    "countyname": "Essex County",
+    "ratio": 0.43
+  },
+  {
+    "countycode": 51059,
+    "countyname": "Fairfax County",
+    "ratio": 0.93
+  },
+  {
+    "countycode": 51061,
+    "countyname": "Fauquier County",
+    "ratio": 0.75
+  },
+  {
+    "countycode": 51063,
+    "countyname": "Floyd County",
+    "ratio": 0.71
+  },
+  {
+    "countycode": 51065,
+    "countyname": "Fluvanna County",
+    "ratio": 0.81
+  },
+  {
+    "countycode": 51067,
+    "countyname": "Franklin County",
+    "ratio": 0.65
+  },
+  {
+    "countycode": 51069,
+    "countyname": "Frederick County",
+    "ratio": 0.7
+  },
+  {
+    "countycode": 51071,
+    "countyname": "Giles County",
+    "ratio": 0.62
+  },
+  {
+    "countycode": 51073,
+    "countyname": "Gloucester County",
+    "ratio": 0.74
+  },
+  {
+    "countycode": 51075,
+    "countyname": "Goochland County",
+    "ratio": 0.7
+  },
+  {
+    "countycode": 51077,
+    "countyname": "Grayson County",
+    "ratio": 0.57
+  },
+  {
+    "countycode": 51079,
+    "countyname": "Greene County",
+    "ratio": 0.82
+  },
+  {
+    "countycode": 51081,
+    "countyname": "Greensville County",
+    "ratio": 0.29
+  },
+  {
+    "countycode": 51083,
+    "countyname": "Halifax County",
+    "ratio": 0.49
+  },
+  {
+    "countycode": 51085,
+    "countyname": "Hanover County",
+    "ratio": 0.81
+  },
+  {
+    "countycode": 51087,
+    "countyname": "Henrico County",
+    "ratio": -9999
+  },
+  {
+    "countycode": 51089,
+    "countyname": "Henry County",
+    "ratio": 0.62
+  },
+  {
+    "countycode": 51091,
+    "countyname": "Highland County",
+    "ratio": 0.81
+  },
+  {
+    "countycode": 51093,
+    "countyname": "Isle of Wight County",
+    "ratio": 0.67
+  },
+  {
+    "countycode": 51095,
+    "countyname": "James City County",
+    "ratio": -9999
+  },
+  {
+    "countycode": 51097,
+    "countyname": "King and Queen County",
+    "ratio": 0.31
+  },
+  {
+    "countycode": 51099,
+    "countyname": "King George County",
+    "ratio": 0.76
+  },
+  {
+    "countycode": 51101,
+    "countyname": "King William County",
+    "ratio": 0.4
+  },
+  {
+    "countycode": 51103,
+    "countyname": "Lancaster County",
+    "ratio": 0.56
+  },
+  {
+    "countycode": 51105,
+    "countyname": "Lee County",
+    "ratio": 0.48
+  },
+  {
+    "countycode": 51107,
+    "countyname": "Loudoun County",
+    "ratio": 0.99
+  },
+  {
+    "countycode": 51109,
+    "countyname": "Louisa County",
+    "ratio": 0.44
+  },
+  {
+    "countycode": 51111,
+    "countyname": "Lunenburg County",
+    "ratio": 0.47
+  },
+  {
+    "countycode": 51113,
+    "countyname": "Madison County",
+    "ratio": 0.58
+  },
+  {
+    "countycode": 51115,
+    "countyname": "Mathews County",
+    "ratio": 0.55
+  },
+  {
+    "countycode": 51117,
+    "countyname": "Mecklenburg County",
+    "ratio": 0.51
+  },
+  {
+    "countycode": 51119,
+    "countyname": "Middlesex County",
+    "ratio": 0.72
+  },
+  {
+    "countycode": 51121,
+    "countyname": "Montgomery County",
+    "ratio": 0.75
+  },
+  {
+    "countycode": 51125,
+    "countyname": "Nelson County",
+    "ratio": 0.69
+  },
+  {
+    "countycode": 51127,
+    "countyname": "New Kent County",
+    "ratio": 0.79
+  },
+  {
+    "countycode": 51131,
+    "countyname": "Northampton County",
+    "ratio": 0.6
+  },
+  {
+    "countycode": 51133,
+    "countyname": "Northumberland County",
+    "ratio": 0.52
+  },
+  {
+    "countycode": 51135,
+    "countyname": "Nottoway County",
+    "ratio": 0.49
+  },
+  {
+    "countycode": 51137,
+    "countyname": "Orange County",
+    "ratio": 0.68
+  },
+  {
+    "countycode": 51139,
+    "countyname": "Page County",
+    "ratio": 0.64
+  },
+  {
+    "countycode": 51141,
+    "countyname": "Patrick County",
+    "ratio": 0.7
+  },
+  {
+    "countycode": 51143,
+    "countyname": "Pittsylvania County",
+    "ratio": 0.54
+  },
+  {
+    "countycode": 51145,
+    "countyname": "Powhatan County",
+    "ratio": 0.81
+  },
+  {
+    "countycode": 51147,
+    "countyname": "Prince Edward County",
+    "ratio": 0.58
+  },
+  {
+    "countycode": 51149,
+    "countyname": "Prince George County",
+    "ratio": 0.7
+  },
+  {
+    "countycode": 51153,
+    "countyname": "Prince William County",
+    "ratio": 1
+  },
+  {
+    "countycode": 51155,
+    "countyname": "Pulaski County",
+    "ratio": 0.58
+  },
+  {
+    "countycode": 51157,
+    "countyname": "Rappahannock County",
+    "ratio": 0.69
+  },
+  {
+    "countycode": 51159,
+    "countyname": "Richmond County",
+    "ratio": 0.45
+  },
+  {
+    "countycode": 51161,
+    "countyname": "Roanoke County",
+    "ratio": 0.8
+  },
+  {
+    "countycode": 51163,
+    "countyname": "Rockbridge County",
+    "ratio": 0.52
+  },
+  {
+    "countycode": 51165,
+    "countyname": "Rockingham County",
+    "ratio": 0.6
+  },
+  {
+    "countycode": 51167,
+    "countyname": "Russell County",
+    "ratio": 0.44
+  },
+  {
+    "countycode": 51169,
+    "countyname": "Scott County",
+    "ratio": 1.03
+  },
+  {
+    "countycode": 51171,
+    "countyname": "Shenandoah County",
+    "ratio": -9999
+  },
+  {
+    "countycode": 51173,
+    "countyname": "Smyth County",
+    "ratio": 0.66
+  },
+  {
+    "countycode": 51175,
+    "countyname": "Southampton County",
+    "ratio": 0.45
+  },
+  {
+    "countycode": 51177,
+    "countyname": "Spotsylvania County",
+    "ratio": 0.91
+  },
+  {
+    "countycode": 51179,
+    "countyname": "Stafford County",
+    "ratio": 0.98
+  },
+  {
+    "countycode": 51181,
+    "countyname": "Surry County",
+    "ratio": -9999
+  },
+  {
+    "countycode": 51183,
+    "countyname": "Sussex County",
+    "ratio": 0.39
+  },
+  {
+    "countycode": 51185,
+    "countyname": "Tazewell County",
+    "ratio": 0.54
+  },
+  {
+    "countycode": 51187,
+    "countyname": "Warren County",
+    "ratio": 0.81
+  },
+  {
+    "countycode": 51191,
+    "countyname": "Washington County",
+    "ratio": 0.68
+  },
+  {
+    "countycode": 51193,
+    "countyname": "Westmoreland County",
+    "ratio": 0.67
+  },
+  {
+    "countycode": 51195,
+    "countyname": "Wise County",
+    "ratio": 0.68
+  },
+  {
+    "countycode": 51197,
+    "countyname": "Wythe County",
+    "ratio": 0.67
+  },
+  {
+    "countycode": 51199,
+    "countyname": "York County",
+    "ratio": -9999
+  },
+  {
+    "countycode": 51510,
+    "countyname": "Alexandria city",
+    "ratio": -9999
+  },
+  {
+    "countycode": 51515,
+    "countyname": "Bedford City",
+    "ratio": -9999
+  },
+  {
+    "countycode": 51520,
+    "countyname": "Bristol city",
+    "ratio": 0.66
+  },
+  {
+    "countycode": 51530,
+    "countyname": "Buena Vista city",
+    "ratio": 0.59
+  },
+  {
+    "countycode": 51540,
+    "countyname": "Charlottesville city",
+    "ratio": 0.75
+  },
+  {
+    "countycode": 51550,
+    "countyname": "Chesapeake city",
+    "ratio": -9999
+  },
+  {
+    "countycode": 51570,
+    "countyname": "Colonial Heights city",
+    "ratio": -9999
+  },
+  {
+    "countycode": 51580,
+    "countyname": "Covington city",
+    "ratio": -9999
+  },
+  {
+    "countycode": 51590,
+    "countyname": "Danville city",
+    "ratio": 0.57
+  },
+  {
+    "countycode": 51595,
+    "countyname": "Emporia city",
+    "ratio": 0.37
+  },
+  {
+    "countycode": 51600,
+    "countyname": "Fairfax city",
+    "ratio": -9999
+  },
+  {
+    "countycode": 51610,
+    "countyname": "Falls Church city",
+    "ratio": 0.86
+  },
+  {
+    "countycode": 51620,
+    "countyname": "Franklin city",
+    "ratio": -9999
+  },
+  {
+    "countycode": 51630,
+    "countyname": "Fredericksburg city",
+    "ratio": 0.91
+  },
+  {
+    "countycode": 51640,
+    "countyname": "Galax city",
+    "ratio": 0.62
+  },
+  {
+    "countycode": 51650,
+    "countyname": "Hampton city",
+    "ratio": -9999
+  },
+  {
+    "countycode": 51660,
+    "countyname": "Harrisonburg city",
+    "ratio": 0.76
+  },
+  {
+    "countycode": 51670,
+    "countyname": "Hopewell city",
+    "ratio": 0.64
+  },
+  {
+    "countycode": 51678,
+    "countyname": "Lexington city",
+    "ratio": 0.91
+  },
+  {
+    "countycode": 51680,
+    "countyname": "Lynchburg city",
+    "ratio": 0.73
+  },
+  {
+    "countycode": 51683,
+    "countyname": "Manassas city",
+    "ratio": -9999
+  },
+  {
+    "countycode": 51685,
+    "countyname": "Manassas Park city",
+    "ratio": -9999
+  },
+  {
+    "countycode": 51690,
+    "countyname": "Martinsville city",
+    "ratio": -9999
+  },
+  {
+    "countycode": 51700,
+    "countyname": "Newport News city",
+    "ratio": -9999
+  },
+  {
+    "countycode": 51710,
+    "countyname": "Norfolk city",
+    "ratio": -9999
+  },
+  {
+    "countycode": 51720,
+    "countyname": "Norton city",
+    "ratio": 0.65
+  },
+  {
+    "countycode": 51730,
+    "countyname": "Petersburg city",
+    "ratio": -9999
+  },
+  {
+    "countycode": 51735,
+    "countyname": "Poquoson city",
+    "ratio": -9999
+  },
+  {
+    "countycode": 51740,
+    "countyname": "Portsmouth city",
+    "ratio": -9999
+  },
+  {
+    "countycode": 51750,
+    "countyname": "Radford city",
+    "ratio": 0.74
+  },
+  {
+    "countycode": 51760,
+    "countyname": "Richmond city",
+    "ratio": -9999
+  },
+  {
+    "countycode": 51770,
+    "countyname": "Roanoke city",
+    "ratio": -9999
+  },
+  {
+    "countycode": 51775,
+    "countyname": "Salem city",
+    "ratio": 0.76
+  },
+  {
+    "countycode": 51790,
+    "countyname": "Staunton city",
+    "ratio": 0.71
+  },
+  {
+    "countycode": 51800,
+    "countyname": "Suffolk city",
+    "ratio": 0.75
+  },
+  {
+    "countycode": 51810,
+    "countyname": "Virginia Beach city",
+    "ratio": -9999
+  },
+  {
+    "countycode": 51820,
+    "countyname": "Waynesboro city",
+    "ratio": -9999
+  },
+  {
+    "countycode": 51830,
+    "countyname": "Williamsburg city",
+    "ratio": -9999
+  },
+  {
+    "countycode": 51840,
+    "countyname": "Winchester city",
+    "ratio": -9999
+  }
+]

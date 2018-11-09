@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { HostListener } from '@angular/core';
 
+
 @Component({
   selector: 'app-body',
   templateUrl: './body.component.html',
@@ -15,9 +16,11 @@ export class BodyComponent implements OnInit, AfterViewInit {
 
   private stateSVG;
   private stateProjection;
-  private countyProjection;
+  private firstCountyProjection;
+  private secondCountyProjection;
   private statePath;
-  private countyPath;
+  private firstCountyPath;
+  private secondCountyPath;
   private virginia;
   private counties;
   public countiesList = [];
@@ -40,6 +43,11 @@ export class BodyComponent implements OnInit, AfterViewInit {
   private secondCountyOptions: string[] = new Array<string>();
   public secondCountyFilteredOptions: Observable<string[]>;
   private resizeTimeout;
+  private color = d3.scaleLinear<string, number>() // why <string, number> is required in that order I'm not sure
+    .domain([0, 100])
+    .range(['#e8eaf6', '#1a237e']);
+  private percentHouseholdsWithInternetOver200kpbs = [];
+  private tooltip;
 
   @HostListener('window:resize')
     onWindowResize() {
@@ -56,6 +64,33 @@ export class BodyComponent implements OnInit, AfterViewInit {
   constructor() { }
 
   ngOnInit() {
+    this.statePath = d3.geoPath().projection(this.stateProjection);
+    // load TopoJSON data
+    d3.json('../../assets/va-counties.json').then((value) => {
+      this.virginia = value;
+      this.counties = this.virginia;
+      this.drawMap(this.virginia);
+      this.populateDropdowns();
+    });
+    this.getData();
+    this.tooltip = d3.select('body').append('div')
+      .attr('class', 'tooltip')
+      .style('position', 'absolute')
+      .style('opacity', '0')
+      .style('background', '#fff')
+      .style('font', '16px sans-serif')
+      .style('height', '28px')
+      .style('border-radius', '6px')
+      .style('padding', '0 5px')
+      .style('text-align', 'center')
+      .style('line-height', '28px');
+    console.log(this.tooltip);
+  }
+
+  ngAfterViewInit() {
+    this.updateStateMap();
+    this.updateFirstCountyMap();
+    this.updateSecondCountyMap();
     this.firstCountySVG = d3.select('.firstCountyContainer')
       .append('svg')
       .attr('class', 'firstCounty')
@@ -67,20 +102,6 @@ export class BodyComponent implements OnInit, AfterViewInit {
       .attr('class', 'secondCounty')
       .attr('width', this.secondCountyWidth)
       .attr('height', this.secondCountyHeight);
-    this.statePath = d3.geoPath().projection(this.stateProjection);
-    // load TopoJSON data
-    d3.json('../../assets/va-counties.json').then((value) => {
-      this.virginia = value;
-      this.counties = this.virginia;
-      this.drawMap(this.virginia);
-      this.populateDropdowns();
-    });
-  }
-
-  ngAfterViewInit() {
-    this.updateStateMap();
-    this.updateFirstCountyMap();
-    this.updateSecondCountyMap();
   }
 
   private getMapData() {
@@ -89,6 +110,17 @@ export class BodyComponent implements OnInit, AfterViewInit {
       this.counties = value;
     });
   }
+
+  private getData() {
+    d3.json('../../assets/percentHouseholdsWithInternetOver200kbps.json').then(value => {
+      for (const county of Object.values(value)) {
+        console.log(String(county['countycode']));
+        this.percentHouseholdsWithInternetOver200kpbs[county['countycode'].toString()] = county.ratio;
+      }
+      console.log(this.percentHouseholdsWithInternetOver200kpbs);
+    });
+  }
+
   /**
    * Draw a map from TopoJSON data
    * @param state the TopoJSON to draw
@@ -110,17 +142,48 @@ export class BodyComponent implements OnInit, AfterViewInit {
       .datum(stateOutline)
       .attr('class', 'state')
       .attr('d', this.statePath)
-      .attr('fill', '#ccc');
-    this.stateSVG.append('path')
-      .datum(topojson.mesh(state, state.objects.counties, function(a, b) {
-        return a !== b; }))
+      .attr('fill', d => {
+        return this.color(Math.random() * (10 - 1) + 1);
+      })
+      .attr('stroke', '#000');
+    const tooltipParam = this.tooltip['_groups'][0][0];
+    console.log(tooltipParam);
+    this.stateSVG.selectAll('path')
+      .data(topojson.feature(state, state.objects.counties)['features'])
+      .enter()
+      .append('path')
+      .on('mouseover', function(d) {
+        console.log(d3.select(this)['_groups'][0][0]['__data__']['properties']['name']);
+        const countyName = d3.select(this)['_groups'][0][0]['__data__']['properties']['name'];
+        d3.select('.tooltip').transition()
+          .duration(200)
+          .style('opacity', 0.9);
+        d3.select('.tooltip').html(countyName)
+          .style('left', d3.event.pageX + 25 + 'px')
+          .style('top', d3.event.pageY - 25 + 'px');
+      })
+      .on('mousemove', function() {
+        d3.select('.tooltip').style('top', (d3.event.pageY - 25) + 'px')
+          .style('left', (d3.event.pageX + 25) + 'px');
+      })
+      .on('mouseout', function() {
+        return d3.select(this).select('div').style('visibility', 'hidden');
+      })
       .attr('class', 'county-border')
       .attr('d', this.statePath)
-      .attr('fill', 'none')
-      .attr('stroke', '#fff')
+      .attr('fill', d => {
+        return this.color(Math.random() * 100);
+      })
+      .attr('stroke', '#000')
       .attr('stroke-width', '1.01px')
       .attr('stroke-linejoin', 'round')
       .attr('stroke-linecap', 'round');
+      /*
+      .on('mouseover', function(d) {
+        console.log(d);
+        d3.select(this)
+          .attr('fill', '#fff');
+      }) */
   }
 
   private updateStateMap() {
@@ -153,10 +216,10 @@ export class BodyComponent implements OnInit, AfterViewInit {
       this.clearFirstCounty();
       this.counties.objects.counties = this.firstCounty;
       const county = topojson.feature(this.counties, this.counties.objects.counties);
-      this.countyProjection = d3.geoIdentity()
+      this.firstCountyProjection = d3.geoIdentity()
         .reflectY(true)
         .fitSize([this.firstCountyWidth, this.firstCountyHeight], county);
-      this.countyPath = d3.geoPath().projection(this.countyProjection);
+      this.firstCountyPath = d3.geoPath().projection(this.firstCountyProjection);
       this.firstCountySVG = d3.select('.firstCountyContainer')
         .append('svg')
         .attr('class', 'firstCounty')
@@ -165,9 +228,9 @@ export class BodyComponent implements OnInit, AfterViewInit {
       this.firstCountySVG.append('path')
         .datum(county)
         .attr('class', 'county')
-        .attr('d', this.countyPath)
-        .attr('fill', '#ccc')
-        .attr('stroke', '#ccc');
+        .attr('d', this.firstCountyPath)
+        .attr('fill', '#3f51b5')
+        .attr('stroke', '#3f51b5');
     } else {
       this.currentFirstCountyName = null;
     }
@@ -191,10 +254,10 @@ export class BodyComponent implements OnInit, AfterViewInit {
       this.clearSecondCounty();
       this.counties.objects.counties = this.secondCounty;
       const county = topojson.feature(this.counties, this.counties.objects.counties);
-      this.countyProjection = d3.geoIdentity()
+      this.secondCountyProjection = d3.geoIdentity()
         .reflectY(true)
         .fitSize([this.secondCountyWidth, this.secondCountyHeight], county);
-      this.countyPath = d3.geoPath().projection(this.countyProjection);
+      this.secondCountyPath = d3.geoPath().projection(this.secondCountyProjection);
       this.secondCountySVG = d3.select('.secondCountyContainer')
         .append('svg')
         .attr('class', 'secondCounty')
@@ -203,9 +266,9 @@ export class BodyComponent implements OnInit, AfterViewInit {
       this.secondCountySVG.append('path')
         .datum(county)
         .attr('class', 'county')
-        .attr('d', this.countyPath)
-        .attr('fill', '#ccc')
-        .attr('stroke', '#ccc');
+        .attr('d', this.secondCountyPath)
+        .attr('fill', '#3f51b5')
+        .attr('stroke', '#3f51b5');
     } else {
       this.currentSecondCountyName = null;
     }
