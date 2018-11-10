@@ -47,7 +47,6 @@ export class BodyComponent implements OnInit, AfterViewInit {
     .domain([0, 100])
     .range(['#e8eaf6', '#1a237e']);
   private percentHouseholdsWithInternetOver200kpbs = [];
-  private tooltip;
 
   @HostListener('window:resize')
     onWindowResize() {
@@ -64,27 +63,9 @@ export class BodyComponent implements OnInit, AfterViewInit {
   constructor() { }
 
   ngOnInit() {
+    this.getRatioData();
     this.statePath = d3.geoPath().projection(this.stateProjection);
-    // load TopoJSON data
-    d3.json('../../assets/va-counties.json').then((value) => {
-      this.virginia = value;
-      this.counties = this.virginia;
-      this.drawMap(this.virginia);
-      this.populateDropdowns();
-    });
-    this.getData();
-    this.tooltip = d3.select('body').append('div')
-      .attr('class', 'tooltip')
-      .style('position', 'absolute')
-      .style('opacity', '0')
-      .style('background', '#fff')
-      .style('font', '16px sans-serif')
-      .style('height', '28px')
-      .style('border-radius', '6px')
-      .style('padding', '0 5px')
-      .style('text-align', 'center')
-      .style('line-height', '28px');
-    console.log(this.tooltip);
+    this.createTooltip();
   }
 
   ngAfterViewInit() {
@@ -111,13 +92,18 @@ export class BodyComponent implements OnInit, AfterViewInit {
     });
   }
 
-  private getData() {
+  private getRatioData() {
     d3.json('../../assets/percentHouseholdsWithInternetOver200kbps.json').then(value => {
-      for (const county of Object.values(value)) {
-        console.log(String(county['countycode']));
-        this.percentHouseholdsWithInternetOver200kpbs[county['countycode'].toString()] = county.ratio;
+      for (const county of Object.entries(value)) {
+        this.percentHouseholdsWithInternetOver200kpbs[county[1]['countyname']] = county[1]['ratio'];
       }
-      console.log(this.percentHouseholdsWithInternetOver200kpbs);
+      // load TopoJSON data
+      d3.json('../../assets/va-counties.json').then((response) => {
+        this.virginia = response;
+        this.counties = this.virginia;
+        this.drawMap(this.virginia);
+        this.populateDropdowns();
+      });
     });
   }
 
@@ -127,6 +113,8 @@ export class BodyComponent implements OnInit, AfterViewInit {
    */
   private drawMap(state) {
     this.clearStateMap();
+    const ratioData = this.percentHouseholdsWithInternetOver200kpbs;
+    const colorFunction = this.color;
     this.stateSVG = d3.select('.Virginia')
       .append('svg')
       .attr('class', 'VirginiaMap')
@@ -142,18 +130,15 @@ export class BodyComponent implements OnInit, AfterViewInit {
       .datum(stateOutline)
       .attr('class', 'state')
       .attr('d', this.statePath)
-      .attr('fill', d => {
+      .attr('fill', () => {
         return this.color(Math.random() * (10 - 1) + 1);
       })
       .attr('stroke', '#000');
-    const tooltipParam = this.tooltip['_groups'][0][0];
-    console.log(tooltipParam);
     this.stateSVG.selectAll('path')
       .data(topojson.feature(state, state.objects.counties)['features'])
       .enter()
       .append('path')
-      .on('mouseover', function(d) {
-        console.log(d3.select(this)['_groups'][0][0]['__data__']['properties']['name']);
+      .on('mouseover', function() {
         const countyName = d3.select(this)['_groups'][0][0]['__data__']['properties']['name'];
         d3.select('.tooltip').transition()
           .duration(200)
@@ -167,23 +152,27 @@ export class BodyComponent implements OnInit, AfterViewInit {
           .style('left', (d3.event.pageX + 25) + 'px');
       })
       .on('mouseout', function() {
-        return d3.select(this).select('div').style('visibility', 'hidden');
+        d3.select('.tooltip').transition()
+          .duration(200)
+          .style('opacity', 0);
+      })
+      .on('click', function() {
+        console.log(d3.select(this)['_groups'][0][0]['__data__']['properties']['name']);
       })
       .attr('class', 'county-border')
       .attr('d', this.statePath)
-      .attr('fill', d => {
-        return this.color(Math.random() * 100);
+      .attr('fill', function() {
+        const countyName = d3.select(this)['_groups'][0][0]['__data__']['properties']['name'];
+        if (ratioData[countyName] !== -9999) {
+          return colorFunction(ratioData[countyName] * 100);
+        } else {
+          return colorFunction(0);
+        }
       })
       .attr('stroke', '#000')
       .attr('stroke-width', '1.01px')
       .attr('stroke-linejoin', 'round')
       .attr('stroke-linecap', 'round');
-      /*
-      .on('mouseover', function(d) {
-        console.log(d);
-        d3.select(this)
-          .attr('fill', '#fff');
-      }) */
   }
 
   private updateStateMap() {
@@ -207,6 +196,10 @@ export class BodyComponent implements OnInit, AfterViewInit {
       }
     }
     return null;
+  }
+
+  private findCountyRatio(name: string) {
+
   }
 
   private drawFirstCounty(name: string) {
@@ -329,5 +322,19 @@ export class BodyComponent implements OnInit, AfterViewInit {
       this.drawSecondCounty(results[0]);
     }
     return results;
+  }
+
+  private createTooltip() {
+    d3.select('body').append('div')
+      .attr('class', 'tooltip')
+      .style('position', 'absolute')
+      .style('opacity', '0')
+      .style('background', '#fff')
+      .style('font', '16px sans-serif')
+      .style('height', '28px')
+      .style('border-radius', '6px')
+      .style('padding', '0 5px')
+      .style('text-align', 'center')
+      .style('line-height', '28px');
   }
 }
