@@ -43,10 +43,12 @@ export class BodyComponent implements OnInit, AfterViewInit {
   private secondCountyOptions: string[] = new Array<string>();
   public secondCountyFilteredOptions: Observable<string[]>;
   private resizeTimeout;
+  private blues = ['#fff7fb', '#ece7f2', '#d0d1e6', '#a6bddb', '#74a9cf', '#3690c0', '#0570b0', '#045a8d', '#023858'];
   private color = d3.scaleLinear<string, number>() // why <string, number> is required in that order I'm not sure
-    .domain([0, 100])
-    .range(['#e8eaf6', '#1a237e']);
+    .domain([29, 38, 46, 54, 65, 74, 83, 92, 101])
+    .range(this.blues);
   private percentHouseholdsWithInternetOver200kpbs = [];
+  private percentHouseholdsWithInternetOver200kbpsLegend;
 
   @HostListener('window:resize')
     onWindowResize() {
@@ -58,6 +60,7 @@ export class BodyComponent implements OnInit, AfterViewInit {
           this.updateStateMap();
           this.updateFirstCountyMap();
           this.updateSecondCountyMap();
+          this.createPercentHouseholdsLegend();
         }).bind(this), 500);
     }
   constructor() { }
@@ -103,6 +106,7 @@ export class BodyComponent implements OnInit, AfterViewInit {
         this.counties = this.virginia;
         this.drawMap(this.virginia);
         this.populateDropdowns();
+        this.createPercentHouseholdsLegend();
       });
     });
   }
@@ -120,7 +124,7 @@ export class BodyComponent implements OnInit, AfterViewInit {
       .attr('class', 'VirginiaMap')
       .attr('width', this.stateWidth)
       .attr('height', this.stateHeight);
-
+    // this.createLegend();
     const stateOutline = topojson.feature(state, state.objects.states);
     this.stateProjection = d3.geoIdentity()
         .reflectY(true)
@@ -130,20 +134,24 @@ export class BodyComponent implements OnInit, AfterViewInit {
       .datum(stateOutline)
       .attr('class', 'state')
       .attr('d', this.statePath)
-      .attr('fill', () => {
-        return this.color(Math.random() * (10 - 1) + 1);
+      .attr('fill', function() {
+        return colorFunction(0.7 * 100);
       })
       .attr('stroke', '#000');
+    const firstCountyFunction = this.drawFirstCounty;
+    const countyHouseholdData = this.percentHouseholdsWithInternetOver200kpbs;
     this.stateSVG.selectAll('path')
       .data(topojson.feature(state, state.objects.counties)['features'])
       .enter()
       .append('path')
       .on('mouseover', function() {
         const countyName = d3.select(this)['_groups'][0][0]['__data__']['properties']['name'];
+        const countyData = countyHouseholdData[countyName] === -9999
+          ? 'data unavailable' : (Math.floor(countyHouseholdData[countyName] * 100)) + '%';
         d3.select('.tooltip').transition()
           .duration(200)
           .style('opacity', 0.9);
-        d3.select('.tooltip').html(countyName)
+        d3.select('.tooltip').html(countyName + '<br>' + countyData)
           .style('left', d3.event.pageX + 25 + 'px')
           .style('top', d3.event.pageY - 25 + 'px');
       })
@@ -157,7 +165,7 @@ export class BodyComponent implements OnInit, AfterViewInit {
           .style('opacity', 0);
       })
       .on('click', function() {
-        console.log(d3.select(this)['_groups'][0][0]['__data__']['properties']['name']);
+        firstCountyFunction(d3.select(this)['_groups'][0][0]['__data__']['properties']['name']);
       })
       .attr('class', 'county-border')
       .attr('d', this.statePath)
@@ -166,7 +174,7 @@ export class BodyComponent implements OnInit, AfterViewInit {
         if (ratioData[countyName] !== -9999) {
           return colorFunction(ratioData[countyName] * 100);
         } else {
-          return colorFunction(0);
+          return '#000';
         }
       })
       .attr('stroke', '#000')
@@ -198,15 +206,12 @@ export class BodyComponent implements OnInit, AfterViewInit {
     return null;
   }
 
-  private findCountyRatio(name: string) {
-
-  }
-
   private drawFirstCounty(name: string) {
     this.firstCounty = this.findCounty(name);
     if (this.firstCounty) {
       this.currentFirstCountyName = name;
       this.clearFirstCounty();
+      this.clearFirstCountyDataContainer();
       this.counties.objects.counties = this.firstCounty;
       const county = topojson.feature(this.counties, this.counties.objects.counties);
       this.firstCountyProjection = d3.geoIdentity()
@@ -224,6 +229,9 @@ export class BodyComponent implements OnInit, AfterViewInit {
         .attr('d', this.firstCountyPath)
         .attr('fill', '#3f51b5')
         .attr('stroke', '#3f51b5');
+      d3.select('.firstCountyDataContainer')
+        .append('text')
+        .text('Percent of households with internet greater than 200 kbps: ' + this.percentHouseholdsWithInternetOver200kpbs[name]);
     } else {
       this.currentFirstCountyName = null;
     }
@@ -245,6 +253,7 @@ export class BodyComponent implements OnInit, AfterViewInit {
     if (this.secondCounty) {
       this.currentSecondCountyName = name;
       this.clearSecondCounty();
+      this.clearSecondCountyDataContainer();
       this.counties.objects.counties = this.secondCounty;
       const county = topojson.feature(this.counties, this.counties.objects.counties);
       this.secondCountyProjection = d3.geoIdentity()
@@ -262,6 +271,9 @@ export class BodyComponent implements OnInit, AfterViewInit {
         .attr('d', this.secondCountyPath)
         .attr('fill', '#3f51b5')
         .attr('stroke', '#3f51b5');
+      d3.select('.secondCountyDataContainer')
+        .append('text')
+        .text('Percent of households with internet greater than 200 kbps: ' + this.percentHouseholdsWithInternetOver200kpbs[name]);
     } else {
       this.currentSecondCountyName = null;
     }
@@ -286,8 +298,16 @@ export class BodyComponent implements OnInit, AfterViewInit {
     this.firstCountySVG.remove();
   }
 
+  private clearFirstCountyDataContainer() {
+    d3.select('.firstCountyDataContainer').selectAll('text').remove();
+  }
+
   private clearSecondCounty() {
     this.secondCountySVG.remove();
+  }
+
+  private clearSecondCountyDataContainer() {
+    d3.select('.secondCountyDataContainer').selectAll('text').remove();
   }
 
   private populateDropdowns() {
@@ -331,10 +351,65 @@ export class BodyComponent implements OnInit, AfterViewInit {
       .style('opacity', '0')
       .style('background', '#fff')
       .style('font', '16px sans-serif')
-      .style('height', '28px')
+      .style('height', '44px')
       .style('border-radius', '6px')
       .style('padding', '0 5px')
       .style('text-align', 'center')
-      .style('line-height', '28px');
+      .style('line-height', '22px');
+  }
+
+  private createPercentHouseholdsLegend() {
+    this.percentHouseholdsWithInternetOver200kbpsLegend = this.stateSVG.selectAll('rect')
+      .data([29, 38, 47, 56, 65, 74, 83, 92, 101])
+      .enter()
+      .append('rect')
+      .attr('width', 20)
+      .attr('height', 20)
+      .attr('y', (d, i) => {
+        return (i % 10 * 20) + 25;
+      })
+      .attr('x', (d, i) => {
+        return Math.floor(10);
+      })
+      .attr('fill', (d) => {
+        return this.color(d);
+      });
+    this.stateSVG.selectAll('text')
+      .data([29, 38, 47, 56, 65, 74, 83, 92, 101])
+      .enter()
+      .append('text')
+      .attr('y', (d, i) => {
+        return (i % 10 * 20) + 40;
+      })
+      .attr('x', 40)
+      .text((d, i) => {
+        return d + '% - ' + (d + 9) + '%';
+      });
+    this.stateSVG
+      .append('text')
+      .attr('x', 40)
+      .attr('y', 220)
+      .text('data unavailable');
+    this.stateSVG
+      .append('text')
+      .attr('x', 10)
+      .attr('y', 15)
+      .text('Percent of households with internet greater than 200 kbps');
+    this.stateSVG
+      .append('rect')
+      .attr('width', 20)
+      .attr('height', 20)
+      .attr('x', 10)
+      .attr('y', 205)
+      .style('fill', 'black');
+    this.stateSVG
+      .append('rect')
+      .attr('width', 20)
+      .attr('height', 200)
+      .attr('x', 10)
+      .attr('y', 25)
+      .attr('stroke', 'black')
+      .style('stroke-width', 2)
+      .style('fill', 'none');
   }
 }
