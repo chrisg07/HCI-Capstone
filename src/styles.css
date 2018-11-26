@@ -4,3 +4,12 @@
 html {
     background: #fff;
 }
+
+
+mat-form-field.mat-form-field {
+    border: solid 1px black;
+}
+
+mat-toolbar-row.mat-toolbar-row {
+    background: #8c2d04;
+}

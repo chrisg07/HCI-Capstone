@@ -2,7 +2,9 @@
   {
     "countycode": 51001,
     "countyname": "Accomack County",
-    "ratio": 0.66
+    "ratio": 0.66,
+    "downloadSpeed" : 0.75,
+    "population" : 34065
   },
   {
     "countycode": 51003,

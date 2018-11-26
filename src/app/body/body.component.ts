@@ -43,9 +43,9 @@ export class BodyComponent implements OnInit, AfterViewInit {
   private secondCountyOptions: string[] = new Array<string>();
   public secondCountyFilteredOptions: Observable<string[]>;
   private resizeTimeout;
-  private blues = ['#fff7fb', '#ece7f2', '#d0d1e6', '#a6bddb', '#74a9cf', '#3690c0', '#0570b0', '#045a8d', '#023858'];
+  private blues = ['#feedde', '#fdd0a2', '#fdae6b', '#fd8d3c', '#f16913', '#d94801', '#8c2d04'];
   private color = d3.scaleLinear<string, number>() // why <string, number> is required in that order I'm not sure
-    .domain([29, 38, 46, 54, 65, 74, 83, 92, 101])
+    .domain([30, 40, 50, 60, 70, 80, 90])
     .range(this.blues);
   private percentHouseholdsWithInternetOver200kpbs = [];
   private percentHouseholdsWithInternetOver200kbpsLegend;
@@ -360,7 +360,7 @@ export class BodyComponent implements OnInit, AfterViewInit {
 
   private createPercentHouseholdsLegend() {
     this.percentHouseholdsWithInternetOver200kbpsLegend = this.stateSVG.selectAll('rect')
-      .data([29, 38, 47, 56, 65, 74, 83, 92, 101])
+      .data([30, 40, 50, 60, 70, 80, 90])
       .enter()
       .append('rect')
       .attr('width', 20)
@@ -375,7 +375,7 @@ export class BodyComponent implements OnInit, AfterViewInit {
         return this.color(d);
       });
     this.stateSVG.selectAll('text')
-      .data([29, 38, 47, 56, 65, 74, 83, 92, 101])
+      .data([30, 40, 50, 60, 70, 80, 90])
       .enter()
       .append('text')
       .attr('y', (d, i) => {
@@ -388,7 +388,7 @@ export class BodyComponent implements OnInit, AfterViewInit {
     this.stateSVG
       .append('text')
       .attr('x', 40)
-      .attr('y', 220)
+      .attr('y', 180)
       .text('data unavailable');
     this.stateSVG
       .append('text')
@@ -400,12 +400,12 @@ export class BodyComponent implements OnInit, AfterViewInit {
       .attr('width', 20)
       .attr('height', 20)
       .attr('x', 10)
-      .attr('y', 205)
+      .attr('y', 165)
       .style('fill', 'black');
     this.stateSVG
       .append('rect')
       .attr('width', 20)
-      .attr('height', 200)
+      .attr('height', 160)
       .attr('x', 10)
       .attr('y', 25)
       .attr('stroke', 'black')
