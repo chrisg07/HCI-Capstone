@@ -360,7 +360,7 @@ export class BodyComponent implements OnInit, AfterViewInit {
 
   private createPercentHouseholdsLegend() {
     this.percentHouseholdsWithInternetOver200kbpsLegend = this.stateSVG.selectAll('rect')
-      .data([30, 40, 50, 60, 70, 80, 90])
+      .data([28, 41, 51, 61, 71, 81, 91])
       .enter()
       .append('rect')
       .attr('width', 20)
@@ -375,7 +375,7 @@ export class BodyComponent implements OnInit, AfterViewInit {
         return this.color(d);
       });
     this.stateSVG.selectAll('text')
-      .data([30, 40, 50, 60, 70, 80, 90])
+      .data([28, 41, 51, 61, 71, 81, 91])
       .enter()
       .append('text')
       .attr('y', (d, i) => {
@@ -383,7 +383,7 @@ export class BodyComponent implements OnInit, AfterViewInit {
       })
       .attr('x', 40)
       .text((d, i) => {
-        return d + '% - ' + (d + 9) + '%';
+        return i === 0 ? '28% - 40%' : d + '% - ' + (d + 9) + '%';
       });
     this.stateSVG
       .append('text')
