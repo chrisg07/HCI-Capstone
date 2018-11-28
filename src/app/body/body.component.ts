@@ -103,6 +103,7 @@ export class BodyComponent implements OnInit, AfterViewInit {
       }
       // load TopoJSON data
       d3.json('../../assets/va-counties.json').then((response) => {
+        console.log(response);
         this.virginia = response;
         this.counties = this.virginia;
         this.drawMap(this.virginia);

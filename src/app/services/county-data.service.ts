@@ -14,14 +14,15 @@ export class CountyDataService {
 
   public getCountyData(name: string): Observable<Object> {
     let retCounty = {};
-    return this.http.get<Object[]>('../../assets/percentHouseholdsWithInternetOver200kbps.json').pipe(
-      map(data => {
-        for (const county of Object.entries(data)) {
-          if (county[1]['countyname'] === name) {
-            retCounty = county;
-            return retCounty[1];
+    return this.http.get<Object[]>('../../assets/percentHouseholdsWithInternetOver200kbps.json')
+      .pipe(
+        map(data => {
+          for (const county of Object.entries(data)) {
+            if (county[1]['countyname'] === name) {
+              retCounty = county;
+              return retCounty[1];
+            }
           }
-        }
-      }));
+        }));
   }
 }
