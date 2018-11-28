@@ -1,0 +1,30 @@
+.card {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+
+    .leftCounty {
+        width: 400px;
+        height: 400px;
+    }
+
+    .question {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        .answers {
+            display: flex;
+            justify-content: space-evenly;
+
+            button {
+                width: 100%;
+            }
+        }
+    }
+
+    .rightCounty{
+        width: 400px;
+        height: 400px;
+    }
+}

@@ -49,6 +49,7 @@ export class BodyComponent implements OnInit, AfterViewInit {
     .range(this.blues);
   private percentHouseholdsWithInternetOver200kpbs = [];
   private percentHouseholdsWithInternetOver200kbpsLegend;
+  public testString = 'string';
 
   @HostListener('window:resize')
     onWindowResize() {

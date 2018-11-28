@@ -7,12 +7,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { BodyComponent } from './body/body.component';
 import { FooterComponent } from './footer/footer.component';
 import { QuestionCardComponent } from './question-card/question-card.component';
+import { CountyDataService } from './services/county-data.service';
 
 @NgModule({
   declarations: [
@@ -31,9 +32,10 @@ import { QuestionCardComponent } from './question-card/question-card.component';
     MatToolbarModule,
     MatAutocompleteModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [CountyDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
