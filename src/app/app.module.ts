@@ -14,6 +14,7 @@ import { BodyComponent } from './body/body.component';
 import { FooterComponent } from './footer/footer.component';
 import { QuestionCardComponent } from './question-card/question-card.component';
 import { CountyDataService } from './services/county-data.service';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { CountyDataService } from './services/county-data.service';
     MatAutocompleteModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatButtonToggleModule
   ],
   providers: [CountyDataService],
   bootstrap: [AppComponent]

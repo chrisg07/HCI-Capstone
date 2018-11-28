@@ -33,15 +33,15 @@ export class QuestionCardComponent implements OnInit {
     });
      this.countyGeometryService.getTopology().subscribe((value) => {
        this.virginia = value;
+       this.countyGeometryService.getCounty(this.leftCountyName).subscribe((value) => {
+        this.leftCountyGeo = value;
+        this.drawCounty(this.leftCountyGeo, '.leftCounty');
+      });
+      this.countyGeometryService.getCounty(this.rightCountyName).subscribe((value) => {
+        this.rightCountyGeo = value;
+        this.drawCounty(this.rightCountyGeo, '.rightCounty');
+      });
      });
-     this.countyGeometryService.getCounty(this.leftCountyName).subscribe((value) => {
-       this.leftCountyGeo = value;
-       this.drawCounty(this.leftCountyGeo, '.leftCounty');
-     });
-     this.countyGeometryService.getCounty(this.rightCountyName).subscribe((value) => {
-      this.rightCountyGeo = value;
-      this.drawCounty(this.rightCountyGeo, '.rightCounty');
-    });
   }
 
   private drawCounty(countyGeo, containerClass: string) {
@@ -49,7 +49,7 @@ export class QuestionCardComponent implements OnInit {
     const county = topojson.feature(this.virginia, this.virginia.objects.counties);
     const countyProjection = d3.geoIdentity()
       .reflectY(true)
-      .fitSize([400, 400], county);
+      .fitSize([380, 380], county);
     const countyPath = d3.geoPath().projection(countyProjection);
     const countySVG = d3.select(containerClass)
       .append('svg')
