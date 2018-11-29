@@ -80,11 +80,8 @@ export class BodyComponent implements OnInit, AfterViewInit {
           minDownloadSpeed = county[1]['downloadSpeed'];
         }
       }
-      console.log('The highest download speed is: ' + maxDownloadSpeed);
-      console.log('The lowest download speed is: ' + minDownloadSpeed);
       // load TopoJSON data
       d3.json('../../assets/va-counties.json').then((response) => {
-        console.log(response);
         this.virginia = response;
         this.drawMap(this.virginia);
         this.createPercentHouseholdsLegend();

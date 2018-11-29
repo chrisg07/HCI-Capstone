@@ -89,7 +89,8 @@ export class CountyComparisonCardComponent implements OnInit, AfterViewInit {
       for (const county of Object.entries(value)) {
         this.countyData[county[1]['countyname']] = { 
           downloadSpeed: county[1]['downloadSpeed'],
-          ratio: county[1]['ratio'] };
+          ratio: county[1]['ratio'],
+          population: county[1]['population'] };
       }
       // load TopoJSON data
       d3.json('../../assets/va-counties.json').then((response) => {
@@ -143,10 +144,13 @@ export class CountyComparisonCardComponent implements OnInit, AfterViewInit {
         .html( 
         this.countyData[name].ratio == '-9999' 
           ? 'Percent of households with internet greater than 200 kbps: ' + 'no data available<br>'
-          : 'Percent of households with internet greater than 200 kbps: ' + this.countyData[name].ratio * 100 + '%<br>');
+          : 'Percent of households with internet greater than 200 kbps: ' + Math.ceil(this.countyData[name].ratio * 100) + '%<br>');
       d3.select('.firstCountyDataContainer')
         .append('html')
         .html('Average download speed: ' + this.countyData[name].downloadSpeed + ' mbps<br>');
+      d3.select('.firstCountyDataContainer')
+        .append('html')
+        .html('Population: ' + this.countyData[name].population + '<br>');
     } else {
       this.currentFirstCountyName = null;
     }
@@ -191,10 +195,13 @@ export class CountyComparisonCardComponent implements OnInit, AfterViewInit {
         .html( 
         this.countyData[name].ratio == '-9999' 
           ? 'Percent of households with internet greater than 200 kbps: ' + 'no data available<br>'
-          : 'Percent of households with internet greater than 200 kbps: ' + this.countyData[name].ratio * 100 + '%<br>');
+          : 'Percent of households with internet greater than 200 kbps: ' + Math.ceil(this.countyData[name].ratio * 100) + '%<br>');
       d3.select('.secondCountyDataContainer')
         .append('html')
         .html('Average download speed: ' + this.countyData[name].downloadSpeed + ' mbps<br>');
+      d3.select('.secondCountyDataContainer')
+        .append('html')
+        .html('Population: ' + this.countyData[name].population + '<br>');
     } else {
       this.currentSecondCountyName = null;
     }

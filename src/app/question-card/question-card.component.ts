@@ -67,7 +67,6 @@ export class QuestionCardComponent implements OnInit {
   }
 
   public answerQuestion(answer: string) {
-    console.log(answer);
     answer === this.answer ? this.correct = 'Correct!' : this.correct = 'Incorrect!';
     this.answered = true;
   }
