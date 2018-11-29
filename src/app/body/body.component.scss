@@ -6,39 +6,3 @@ svg.VirginiaMap {
     width: calc(75% + 135px);
     margin: 0 auto 0 auto;
 }
-
-.autocompleteDropdownContainer {
-    display: flex;
-    width: 100%;
-}
-
-form {
-    width: 100%;
-
-    mat-form-field {
-        width: 80%;
-    }
-}
-
-.countyComparisonContainer {
-    display: flex;
-    width: 100%;
-
-    .firstCountyContainer {
-        width: 25%;
-    }
-
-    .firstCountyDataContainer {
-        width: 25%;
-        border: solid 1px black;
-    }
-
-    .secondCountyContainer {
-        width: 25%;
-    }
-
-    .secondCountyDataContainer {
-        width: 25%;
-        border: solid 1px black;
-    }
-}

@@ -16,36 +16,23 @@ export class BodyComponent implements OnInit, AfterViewInit {
 
   private stateSVG;
   private stateProjection;
-  private firstCountyProjection;
-  private secondCountyProjection;
   private statePath;
-  private firstCountyPath;
-  private secondCountyPath;
   private virginia;
-  private counties;
   public countiesList = [];
   public stateWidth;
   public stateHeight;
-  private currentFirstCountyName: string;
-  private firstCountySVG;
-  private firstCounty;
   public firstCountyWidth;
   public firstCountyHeight;
   public firstCountyControl = new FormControl();
-  private firstCountyOptions: string[] = new Array<string>();
   public firstCountyFilteredOptions: Observable<string[]>;
-  private currentSecondCountyName: string;
-  private secondCountySVG;
-  private secondCounty;
   public secondCountyWidth;
   public secondCountyHeight;
   public secondCountyControl = new FormControl();
-  private secondCountyOptions: string[] = new Array<string>();
   public secondCountyFilteredOptions: Observable<string[]>;
   private resizeTimeout;
   private blues = ['#feedde', '#fdd0a2', '#fdae6b', '#fd8d3c', '#f16913', '#d94801', '#8c2d04'];
   private color = d3.scaleLinear<string, number>() // why <string, number> is required in that order I'm not sure
-    .domain([30, 40, 50, 60, 70, 80, 90])
+    .domain([3, 4.75, 6.5, 8.25, 10, 11.75, 13.5])
     .range(this.blues);
   private percentHouseholdsWithInternetOver200kpbs = [];
   private percentHouseholdsWithInternetOver200kbpsLegend;
@@ -59,8 +46,6 @@ export class BodyComponent implements OnInit, AfterViewInit {
         }
         this.resizeTimeout = setTimeout((() => {
           this.updateStateMap();
-          this.updateFirstCountyMap();
-          this.updateSecondCountyMap();
           this.createPercentHouseholdsLegend();
         }).bind(this), 500);
     }
@@ -74,40 +59,34 @@ export class BodyComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.updateStateMap();
-    this.updateFirstCountyMap();
-    this.updateSecondCountyMap();
-    this.firstCountySVG = d3.select('.firstCountyContainer')
-      .append('svg')
-      .attr('class', 'firstCounty')
-      .attr('width', this.firstCountyWidth)
-      .attr('height', this.firstCountyHeight);
-
-    this.secondCountySVG = d3.select('.secondCountyContainer')
-      .append('svg')
-      .attr('class', 'secondCounty')
-      .attr('width', this.secondCountyWidth)
-      .attr('height', this.secondCountyHeight);
   }
 
   private getMapData() {
     d3.json('../../assets/va-counties.json').then((value) => {
       this.virginia = value;
-      this.counties = value;
     });
   }
 
   private getRatioData() {
     d3.json('../../assets/percentHouseholdsWithInternetOver200kbps.json').then(value => {
+      let maxDownloadSpeed = 0;
+      let minDownloadSpeed = 400;
       for (const county of Object.entries(value)) {
-        this.percentHouseholdsWithInternetOver200kpbs[county[1]['countyname']] = county[1]['ratio'];
+        this.percentHouseholdsWithInternetOver200kpbs[county[1]['countyname']] = county[1]['downloadSpeed'];
+        if (county[1]['downloadSpeed'] > maxDownloadSpeed) {
+          maxDownloadSpeed = county[1]['downloadSpeed'];
+        }
+        if (county[1]['downloadSpeed'] < minDownloadSpeed) {
+          minDownloadSpeed = county[1]['downloadSpeed'];
+        }
       }
+      console.log('The highest download speed is: ' + maxDownloadSpeed);
+      console.log('The lowest download speed is: ' + minDownloadSpeed);
       // load TopoJSON data
       d3.json('../../assets/va-counties.json').then((response) => {
         console.log(response);
         this.virginia = response;
-        this.counties = this.virginia;
         this.drawMap(this.virginia);
-        this.populateDropdowns();
         this.createPercentHouseholdsLegend();
       });
     });
@@ -137,10 +116,9 @@ export class BodyComponent implements OnInit, AfterViewInit {
       .attr('class', 'state')
       .attr('d', this.statePath)
       .attr('fill', function() {
-        return colorFunction(0.7 * 100);
+        return colorFunction(12.31);
       })
       .attr('stroke', '#000');
-    const firstCountyFunction = this.drawFirstCounty;
     const countyHouseholdData = this.percentHouseholdsWithInternetOver200kpbs;
     this.stateSVG.selectAll('path')
       .data(topojson.feature(state, state.objects.counties)['features'])
@@ -148,8 +126,7 @@ export class BodyComponent implements OnInit, AfterViewInit {
       .append('path')
       .on('mouseover', function() {
         const countyName = d3.select(this)['_groups'][0][0]['__data__']['properties']['name'];
-        const countyData = countyHouseholdData[countyName] === -9999
-          ? 'data unavailable' : (Math.floor(countyHouseholdData[countyName] * 100)) + '%';
+        const countyData = countyHouseholdData[countyName];
         d3.select('.tooltip').transition()
           .duration(200)
           .style('opacity', 0.9);
@@ -166,18 +143,11 @@ export class BodyComponent implements OnInit, AfterViewInit {
           .duration(200)
           .style('opacity', 0);
       })
-      .on('click', function() {
-        firstCountyFunction(d3.select(this)['_groups'][0][0]['__data__']['properties']['name']);
-      })
       .attr('class', 'county-border')
       .attr('d', this.statePath)
       .attr('fill', function() {
         const countyName = d3.select(this)['_groups'][0][0]['__data__']['properties']['name'];
-        if (ratioData[countyName] !== -9999) {
-          return colorFunction(ratioData[countyName] * 100);
-        } else {
-          return '#000';
-        }
+        return colorFunction(ratioData[countyName]);
       })
       .attr('stroke', '#000')
       .attr('stroke-width', '1.01px')
@@ -208,142 +178,8 @@ export class BodyComponent implements OnInit, AfterViewInit {
     return null;
   }
 
-  private drawFirstCounty(name: string) {
-    this.firstCounty = this.findCounty(name);
-    if (this.firstCounty) {
-      this.currentFirstCountyName = name;
-      this.clearFirstCounty();
-      this.clearFirstCountyDataContainer();
-      this.counties.objects.counties = this.firstCounty;
-      const county = topojson.feature(this.counties, this.counties.objects.counties);
-      this.firstCountyProjection = d3.geoIdentity()
-        .reflectY(true)
-        .fitSize([this.firstCountyWidth, this.firstCountyHeight], county);
-      this.firstCountyPath = d3.geoPath().projection(this.firstCountyProjection);
-      this.firstCountySVG = d3.select('.firstCountyContainer')
-        .append('svg')
-        .attr('class', 'firstCounty')
-        .attr('width', this.firstCountyWidth)
-        .attr('height', this.firstCountyHeight);
-      this.firstCountySVG.append('path')
-        .datum(county)
-        .attr('class', 'county')
-        .attr('d', this.firstCountyPath)
-        .attr('fill', '#3f51b5')
-        .attr('stroke', '#3f51b5');
-      d3.select('.firstCountyDataContainer')
-        .append('text')
-        .text('Percent of households with internet greater than 200 kbps: ' + this.percentHouseholdsWithInternetOver200kpbs[name]);
-    } else {
-      this.currentFirstCountyName = null;
-    }
-    // reinstates this.virginia so the geometries can be searched through again
-    // work around for the data being consumed for some reason I don't fully understand
-    this.getMapData();
-  }
-
-  private updateFirstCountyMap() {
-    this.firstCountyWidth = (window.innerWidth - 150) * .25;
-    this.firstCountyHeight = this.firstCountyWidth * .5;
-    if (this.currentFirstCountyName) {
-      this.drawFirstCounty(this.currentFirstCountyName);
-    }
-  }
-
-  private drawSecondCounty(name: string) {
-    this.secondCounty = this.findCounty(name);
-    if (this.secondCounty) {
-      this.currentSecondCountyName = name;
-      this.clearSecondCounty();
-      this.clearSecondCountyDataContainer();
-      this.counties.objects.counties = this.secondCounty;
-      const county = topojson.feature(this.counties, this.counties.objects.counties);
-      this.secondCountyProjection = d3.geoIdentity()
-        .reflectY(true)
-        .fitSize([this.secondCountyWidth, this.secondCountyHeight], county);
-      this.secondCountyPath = d3.geoPath().projection(this.secondCountyProjection);
-      this.secondCountySVG = d3.select('.secondCountyContainer')
-        .append('svg')
-        .attr('class', 'secondCounty')
-        .attr('width', this.secondCountyWidth)
-        .attr('height', this.secondCountyHeight);
-      this.secondCountySVG.append('path')
-        .datum(county)
-        .attr('class', 'county')
-        .attr('d', this.secondCountyPath)
-        .attr('fill', '#3f51b5')
-        .attr('stroke', '#3f51b5');
-      d3.select('.secondCountyDataContainer')
-        .append('text')
-        .text('Percent of households with internet greater than 200 kbps: ' + this.percentHouseholdsWithInternetOver200kpbs[name]);
-    } else {
-      this.currentSecondCountyName = null;
-    }
-    // reinstates this.virginia so the geometries can be searched through again
-    // work around for the data being consumed for some reason I don't fully understand
-    this.getMapData();
-  }
-
-  private updateSecondCountyMap() {
-    this.secondCountyWidth = (window.innerWidth - 150) * .25;
-    this.secondCountyHeight = this.secondCountyWidth * .5;
-    if (this.currentSecondCountyName) {
-      this.drawSecondCounty(this.currentSecondCountyName);
-    }
-  }
-
   private clearStateMap() {
     d3.select('.VirginiaMap').remove();
-  }
-
-  private clearFirstCounty() {
-    this.firstCountySVG.remove();
-  }
-
-  private clearFirstCountyDataContainer() {
-    d3.select('.firstCountyDataContainer').selectAll('text').remove();
-  }
-
-  private clearSecondCounty() {
-    this.secondCountySVG.remove();
-  }
-
-  private clearSecondCountyDataContainer() {
-    d3.select('.secondCountyDataContainer').selectAll('text').remove();
-  }
-
-  private populateDropdowns() {
-    this.buildCountiesList(this.virginia);
-    this.firstCountyOptions = Object.keys(this.countiesList).sort();
-    this.firstCountyFilteredOptions = this.firstCountyControl.valueChanges
-    .pipe(
-      startWith(''),
-      map(filterValue => this._firstFilter(filterValue))
-    );
-    this.secondCountyOptions = Object.keys(this.countiesList).sort();
-    this.secondCountyFilteredOptions = this.secondCountyControl.valueChanges
-    .pipe(
-      startWith(''),
-      map(filterValue => this._secondFilter(filterValue))
-    );
-  }
-
-  private _firstFilter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-    const results = this.firstCountyOptions.filter(option => option.toLowerCase().includes(filterValue));
-    if (results.length === 1 && results[0].toLowerCase() === filterValue) {
-      this.drawFirstCounty(results[0]);
-    }
-    return results;
-  }
-
-  private _secondFilter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-    const results = this.secondCountyOptions.filter(option => option.toLowerCase().includes(filterValue));
-    if (results.length === 1 && results[0].toLowerCase() === filterValue) {
-      this.drawSecondCounty(results[0]);
-    }
-    return results;
   }
 
   private createTooltip() {
@@ -362,7 +198,7 @@ export class BodyComponent implements OnInit, AfterViewInit {
 
   private createPercentHouseholdsLegend() {
     this.percentHouseholdsWithInternetOver200kbpsLegend = this.stateSVG.selectAll('rect')
-      .data([28, 41, 51, 61, 71, 81, 91])
+      .data([3, 4.75, 6.5, 8.25, 10, 11.75, 13.5])
       .enter()
       .append('rect')
       .attr('width', 20)
@@ -377,7 +213,7 @@ export class BodyComponent implements OnInit, AfterViewInit {
         return this.color(d);
       });
     this.stateSVG.selectAll('text')
-      .data([28, 41, 51, 61, 71, 81, 91])
+      .data([3, 4.75, 6.5, 8.25, 10, 11.75, 13.5])
       .enter()
       .append('text')
       .attr('y', (d, i) => {
@@ -385,29 +221,17 @@ export class BodyComponent implements OnInit, AfterViewInit {
       })
       .attr('x', 40)
       .text((d, i) => {
-        return i === 0 ? '28% - 40%' : d + '% - ' + (d + 9) + '%';
+        return  d + ' - ' + (d + 2) + ' mbps';
       });
-    this.stateSVG
-      .append('text')
-      .attr('x', 40)
-      .attr('y', 180)
-      .text('data unavailable');
     this.stateSVG
       .append('text')
       .attr('x', 10)
       .attr('y', 15)
-      .text('Percent of households with internet greater than 200 kbps');
+      .text('Average Download Speed in mbps');
     this.stateSVG
       .append('rect')
       .attr('width', 20)
-      .attr('height', 20)
-      .attr('x', 10)
-      .attr('y', 165)
-      .style('fill', 'black');
-    this.stateSVG
-      .append('rect')
-      .attr('width', 20)
-      .attr('height', 160)
+      .attr('height', 140)
       .attr('x', 10)
       .attr('y', 25)
       .attr('stroke', 'black')

@@ -19,6 +19,8 @@ export class QuestionCardComponent implements OnInit {
   private leftCountyGeo: Object;
   private rightCountyData: Object;
   private rightCountyGeo: Object;
+  public correct: string = '';
+  public answered: boolean = false;
 
   constructor(
     private countyDataService: CountyDataService,
@@ -60,41 +62,13 @@ export class QuestionCardComponent implements OnInit {
       .datum(county)
       .attr('class', 'county')
       .attr('d', countyPath)
-      .attr('fill', '#3f51b5')
-      .attr('stroke', '#3f51b5');
+      .attr('fill', '#d94801')
+      .attr('stroke', '#000');
   }
-  /*
-  private drawFirstCounty(countyName: string, containerClass:string) {
-    this.firstCounty = this.findCounty(name);
-    if (this.firstCounty) {
-      this.currentFirstCountyName = name;
-      this.clearFirstCounty();
-      this.clearFirstCountyDataContainer();
-      this.counties.objects.counties = this.firstCounty;
-      const county = topojson.feature(this.counties, this.counties.objects.counties);
-      this.firstCountyProjection = d3.geoIdentity()
-        .reflectY(true)
-        .fitSize([this.firstCountyWidth, this.firstCountyHeight], county);
-      this.firstCountyPath = d3.geoPath().projection(this.firstCountyProjection);
-      this.firstCountySVG = d3.select('.firstCountyContainer')
-        .append('svg')
-        .attr('class', 'firstCounty')
-        .attr('width', this.firstCountyWidth)
-        .attr('height', this.firstCountyHeight);
-      this.firstCountySVG.append('path')
-        .datum(county)
-        .attr('class', 'county')
-        .attr('d', this.firstCountyPath)
-        .attr('fill', '#3f51b5')
-        .attr('stroke', '#3f51b5');
-      d3.select('.firstCountyDataContainer')
-        .append('text')
-        .text('Percent of households with internet greater than 200 kbps: ' + this.percentHouseholdsWithInternetOver200kpbs[name]);
-    } else {
-      this.currentFirstCountyName = null;
-    }
-    // reinstates this.virginia so the geometries can be searched through again
-    // work around for the data being consumed for some reason I don't fully understand
-    this.getMapData();
-  } */
+
+  public answerQuestion(answer: string) {
+    console.log(answer);
+    answer === this.answer ? this.correct = 'Correct!' : this.correct = 'Incorrect!';
+    this.answered = true;
+  }
 }

@@ -1,42 +1,6 @@
 <div class='Virginia'>
 
 </div>
-<div class='autocompleteDropdownContainer'>
-    <form class="firstCounty-form">
-        <mat-form-field>
-            <input type="text" placeholder="Select a county" aria-label="Number" matInput [formControl]="firstCountyControl" [matAutocomplete]="firstCountyAutocomplete">
-            <mat-autocomplete #firstCountyAutocomplete="matAutocomplete">
-                <mat-option *ngFor="let option of firstCountyFilteredOptions | async" [value]="option">
-                {{option}}
-                </mat-option>
-            </mat-autocomplete>
-        </mat-form-field>
-    </form>
-    <form class="secondCounty-form">
-        <mat-form-field>
-            <input type="text" placeholder="Select another county" aria-label="Number" matInput [formControl]="secondCountyControl" [matAutocomplete]="secondCountyAutocomplete">
-            <mat-autocomplete #secondCountyAutocomplete="matAutocomplete">
-                <mat-option *ngFor="let option of secondCountyFilteredOptions | async" [value]="option">
-                {{option}}
-                </mat-option>
-            </mat-autocomplete>
-        </mat-form-field>
-    </form>
-</div>
-<div class='countyComparisonContainer'>
-    <div class='firstCountyContainer'>
-        
-    </div>
-    <div class='firstCountyDataContainer'>
-        
-    </div>
-    <div class='secondCountyDataContainer'>
-        
-    </div>
-    <div class='secondCountyContainer'>
-        
-    </div>
-</div>
 <app-question-card 
     question='Which county has the highest percentage of households with internet access greater than 200 kbps?' 
     leftCountyName='Fauquier County' 
@@ -61,3 +25,4 @@
     rightCountyName='Franklin County' 
     answer='Franklin County'>
 </app-question-card>
+<app-county-comparison-card></app-county-comparison-card>

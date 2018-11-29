@@ -15,6 +15,7 @@ import { FooterComponent } from './footer/footer.component';
 import { QuestionCardComponent } from './question-card/question-card.component';
 import { CountyDataService } from './services/county-data.service';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { CountyComparisonCardComponent } from './county-comparison-card/county-comparison-card.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     HeaderComponent,
     BodyComponent,
     FooterComponent,
-    QuestionCardComponent
+    QuestionCardComponent,
+    CountyComparisonCardComponent
   ],
   imports: [
     BrowserModule,
