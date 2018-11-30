@@ -1,12 +1,12 @@
 <div class='card mat-typography'>
-  <div class='leftCounty'></div>
+  <div class="leftCounty{{uniqueID}}"></div>
   <div class='question'>
-    <p>{{question}}</p>
+    <p>{{ question }}</p>
     <mat-button-toggle-group class='answers' name="fontStyle" aria-label="Font Style">
       <mat-button-toggle class='answer' (click)="answerQuestion(leftCountyName)">{{leftCountyName}}</mat-button-toggle>
       <mat-button-toggle class='answer' (click)="answerQuestion(rightCountyName)">{{rightCountyName}}</mat-button-toggle>
     </mat-button-toggle-group> 
-    {{ correct }}
+    <p>{{ correct }}</p>
   </div>
-  <div class='rightCounty'></div>
+  <div class="rightCounty{{uniqueID}}"></div>
 </div>

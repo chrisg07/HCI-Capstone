@@ -14,6 +14,7 @@ export class QuestionCardComponent implements OnInit {
   @Input() leftCountyName: string;
   @Input() rightCountyName: string;
   @Input() answer: string;
+  @Input() uniqueID: string;
   private virginia;
   private leftCountyData: Object;
   private leftCountyGeo: Object;
@@ -37,11 +38,11 @@ export class QuestionCardComponent implements OnInit {
        this.virginia = value;
        this.countyGeometryService.getCounty(this.leftCountyName).subscribe((value) => {
         this.leftCountyGeo = value;
-        this.drawCounty(this.leftCountyGeo, '.leftCounty');
+        this.drawCounty(this.leftCountyGeo, '.leftCounty' + this.uniqueID);
       });
       this.countyGeometryService.getCounty(this.rightCountyName).subscribe((value) => {
         this.rightCountyGeo = value;
-        this.drawCounty(this.rightCountyGeo, '.rightCounty');
+        this.drawCounty(this.rightCountyGeo, '.rightCounty' + this.uniqueID);
       });
      });
   }
@@ -55,7 +56,7 @@ export class QuestionCardComponent implements OnInit {
     const countyPath = d3.geoPath().projection(countyProjection);
     const countySVG = d3.select(containerClass)
       .append('svg')
-      .attr('class', 'firstCounty')
+      .attr('class', 'firstCounty' + this.uniqueID)
       .attr('width', 400)
       .attr('height', 400);
     countySVG.append('path')

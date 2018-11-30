@@ -131,14 +131,14 @@ export class CountyComparisonCardComponent implements OnInit, AfterViewInit {
       this.firstCountySVG = d3.select('.firstCountyContainer')
         .append('svg')
         .attr('class', 'firstCounty')
-        .attr('width', this.firstCountyWidth)
-        .attr('height', this.firstCountyHeight);
+        .attr('width', this.firstCountyWidth + 20)
+        .attr('height', this.firstCountyHeight + 20);
       this.firstCountySVG.append('path')
         .datum(county)
         .attr('class', 'county')
         .attr('d', this.firstCountyPath)
-        .attr('fill', '#3f51b5')
-        .attr('stroke', '#3f51b5');
+        .attr('fill', '#d94801')
+        .attr('stroke', '#000');
       d3.select('.firstCountyDataContainer')
         .append('html')
         .html( 
@@ -182,14 +182,14 @@ export class CountyComparisonCardComponent implements OnInit, AfterViewInit {
       this.secondCountySVG = d3.select('.secondCountyContainer')
         .append('svg')
         .attr('class', 'secondCounty')
-        .attr('width', this.secondCountyWidth)
-        .attr('height', this.secondCountyHeight);
+        .attr('width', this.secondCountyWidth + 20)
+        .attr('height', this.secondCountyHeight + 20);
       this.secondCountySVG.append('path')
         .datum(county)
         .attr('class', 'county')
         .attr('d', this.secondCountyPath)
-        .attr('fill', '#3f51b5')
-        .attr('stroke', '#3f51b5');
+        .attr('fill', '#d94801')
+        .attr('stroke', '#000');
       d3.select('.secondCountyDataContainer')
         .append('html')
         .html( 
