@@ -28,3 +28,5 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Bugs I'm aware of
 
+## Sources
+`https://www.census.gov/prod/cen2010/cph-2-48.pdf` Percentages of population that live in a rural area by county
