@@ -30,9 +30,9 @@ export class QuestionCardComponent implements OnInit, AfterViewInit, OnChanges {
   private firstCountyOptions: string[] = new Array<string>();
   public firstCountyFilteredOptions: Observable<string[]>;
   private newFirstCountyName: string;
-  private currentFirstCountyName: string;
+  public currentFirstCountyName: string;
   private newSecondCountyName: string;
-  private currentSecondCountyName: string;
+  public currentSecondCountyName: string;
   private secondCountySVG;
   private secondCounty;
   public secondCountyWidth;

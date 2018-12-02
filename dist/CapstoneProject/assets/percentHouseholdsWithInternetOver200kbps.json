@@ -4,287 +4,328 @@
     "countyname": "Accomack County",
     "ratio": 0.66,
     "downloadSpeed" : 7.03,
-    "population" : 38305
+    "population" : 38305,
+    "percentageRural" : 100
   },
   {
     "countycode": 51003,
     "countyname": "Albemarle County",
     "ratio": 0.9,
     "downloadSpeed" : 14.10,
-    "population" : 79236
+    "population" : 79236,
+    "percentageRural" : 45
   },
   {
     "countycode": 51005,
     "countyname": "Alleghany County",
     "ratio": 0.69,
     "downloadSpeed" : 9.31,
-    "population" : 12926
+    "population" : 12926,
+    "percentageRural" : 52.4
   },
   {
     "countycode": 51007,
     "countyname": "Amelia County",
     "ratio": 0.63,
     "downloadSpeed" : 9.13,
-    "population" : 11400
+    "population" : 11400,
+    "percentageRural" : 100
   },
   {
     "countycode": 51009,
     "countyname": "Amherst County",
     "ratio": 0.54,
     "downloadSpeed" : 7.56,
-    "population" : 31894
+    "population" : 31894,
+    "percentageRural" : 63.7
   },
   {
     "countycode": 51011,
     "countyname": "Appomattox County",
     "ratio": 0.42,
     "downloadSpeed" : 6.57,
-    "population" : 13705
+    "population" : 13705,
+    "percentageRural" : 100
   },
   {
     "countycode": 51013,
     "countyname": "Arlington County",
     "ratio": -9999,
     "downloadSpeed" : 15.10,
-    "population" : 189453
+    "population" : 189453,
+    "percentageRural" : 0
   },
   {
     "countycode": 51015,
     "countyname": "Augusta County",
     "ratio": 0.6,
     "downloadSpeed" : 8.01,
-    "population" : 65615
+    "population" : 65615,
+    "percentageRural" : 66.4
   },
   {
     "countycode": 51017,
     "countyname": "Bath County",
     "ratio": 0.67,
     "downloadSpeed" : 8.56,
-    "population" : 5048
+    "population" : 5048,
+    "percentageRural" : 100
   },
   {
     "countycode": 51019,
     "countyname": "Bedford County",
     "ratio": 0.61,
     "downloadSpeed" : 8.43,
-    "population" : 60371
+    "population" : 60371,
+    "percentageRural" : 78.4
   },
   {
     "countycode": 51021,
     "countyname": "Bland County",
     "ratio": 0.57,
     "downloadSpeed" : 8.21,
-    "population" : 6871
+    "population" : 6871,
+    "percentageRural" : 100
   },
   {
     "countycode": 51023,
     "countyname": "Botetourt County",
     "ratio": 0.67,
     "downloadSpeed" : 9.50,
-    "population" : 30496
+    "population" : 30496,
+    "percentageRural" : 64.1
   },
   {
     "countycode": 51025,
     "countyname": "Brunswick County",
     "ratio": 0.38,
     "downloadSpeed" : 4.37,
-    "population" : 18419
+    "population" : 18419,
+    "percentageRural" : 75.5
   },
   {
     "countycode": 51027,
     "countyname": "Buchanan County",
     "ratio": 0.37,
     "downloadSpeed" : 4.28,
-    "population" : 26978
+    "population" : 26978,
+    "percentageRural" : 100
   },
   {
     "countycode": 51029,
     "countyname": "Buckingham County",
     "ratio": 0.55,
     "downloadSpeed" : 8.55,
-    "population" : 15623
+    "population" : 15623,
+    "percentageRural" : 100
   },
   {
     "countycode": 51031,
     "countyname": "Campbell County",
     "ratio": 0.63,
     "downloadSpeed" : 9.00,
-    "population" : 51078
+    "population" : 51078,
+    "percentageRural" : 61.1
   },
   {
     "countycode": 51033,
     "countyname": "Caroline County",
     "ratio": 0.53,
     "downloadSpeed" : 8.45,
-    "population" : 22121
+    "population" : 22121,
+    "percentageRural" : 78.4
   },
   {
     "countycode": 51035,
     "countyname": "Carroll County",
     "ratio": 0.62,
     "downloadSpeed" : 8.79,
-    "population" : 29245
+    "population" : 29245,
+    "percentageRural" : 97.1
   },
   {
     "countycode": 51036,
     "countyname": "Charles City County",
     "ratio": 0.41,
     "downloadSpeed" : 6.78,
-    "population" : 6926
+    "population" : 6926,
+    "percentageRural" : 100
   },
   {
     "countycode": 51037,
     "countyname": "Charlotte County",
     "ratio": 0.34,
     "downloadSpeed" : 3.99,
-    "population" : 12472
+    "population" : 12472,
+    "percentageRural" : 100
   },
   {
     "countycode": 51041,
     "countyname": "Chesterfield County",
     "ratio": -9999,
     "downloadSpeed" : 12.11,
-    "population" : 259903
+    "population" : 259903,
+    "percentageRural" : 5.9
   },
   {
     "countycode": 51043,
     "countyname": "Clarke County",
     "ratio": 0.62,
     "downloadSpeed" : 8.99,
-    "population" : 12652
+    "population" : 12652,
+    "percentageRural" : 69.5
   },
   {
     "countycode": 51045,
     "countyname": "Craig County",
     "ratio": 0.61,
     "downloadSpeed" : 8.76,
-    "population" : 5091
+    "population" : 5091,
+    "percentageRural" : 100
   },
   {
     "countycode": 51047,
     "countyname": "Culpeper County",
     "ratio": 0.74,
     "downloadSpeed" : 12.78,
-    "population" : 34626
+    "population" : 34626,
+    "percentageRural" : 61.9
   },
   {
     "countycode": 51049,
     "countyname": "Cumberland County",
     "ratio": 0.4,
     "downloadSpeed" : 6.97,
-    "population" : 9017
+    "population" : 9017,
+    "percentageRural" : 96
   },
   {
     "countycode": 51051,
     "countyname": "Dickenson County",
     "ratio": 0.5,
     "downloadSpeed" : 8.50,
-    "population" : 16395
+    "population" : 16395,
+    "percentageRural" : 100
   },
   {
     "countycode": 51053,
     "countyname": "Dinwiddie County",
     "ratio": 0.49,
     "downloadSpeed" : 8.45,
-    "population" : 24533
+    "population" : 24533,
+    "percentageRural" : 71.2
   },
   {
     "countycode": 51057,
     "countyname": "Essex County",
     "ratio": 0.43,
     "downloadSpeed" : 8.27,
-    "population" : 9989
+    "population" : 9989,
+    "percentageRural" : 77.3
   },
   {
     "countycode": 51059,
     "countyname": "Fairfax County",
     "ratio": 0.93,
     "downloadSpeed" : 14.89,
-    "population" : 969749
+    "population" : 969749,
+    "percentageRural" : 1.4
   },
   {
     "countycode": 51061,
     "countyname": "Fauquier County",
     "ratio": 0.75,
     "downloadSpeed" : 12.50,
-    "population" : 55139
+    "population" : 55139,
+    "percentageRural" : 57.5
   },
   {
     "countycode": 51063,
     "countyname": "Floyd County",
     "ratio": 0.71,
     "downloadSpeed" : 12.32,
-    "population" : 13874
+    "population" : 13874,
+    "percentageRural" : 100
   },
   {
     "countycode": 51065,
     "countyname": "Fluvanna County",
     "ratio": 0.81,
     "downloadSpeed" : 13.78,
-    "population" : 20047
+    "population" : 20047,
+    "percentageRural" : 62.9
   },
   {
     "countycode": 51067,
     "countyname": "Franklin County",
     "ratio": 0.65,
     "downloadSpeed" : 9.83,
-    "population" : 47286
+    "population" : 47286,
+    "percentageRural" : 89.2
   },
   {
     "countycode": 51069,
     "countyname": "Frederick County",
     "ratio": 0.7,
     "downloadSpeed" : 12.31,
-    "population" : 59209
+    "population" : 59209,
+    "percentageRural" : 44.8
   },
   {
     "countycode": 51071,
     "countyname": "Giles County",
     "ratio": 0.62,
     "downloadSpeed" : 11.41,
-    "population" : 16657
+    "population" : 16657,
+    "percentageRural" : 66.3
   },
   {
     "countycode": 51073,
     "countyname": "Gloucester County",
     "ratio": 0.74,
     "downloadSpeed" : 12.67,
-    "population" : 34780
+    "population" : 34780,
+    "percentageRural" : 64.6
   },
   {
     "countycode": 51075,
     "countyname": "Goochland County",
     "ratio": 0.7,
     "downloadSpeed" : 13.50,
-    "population" : 16863
+    "population" : 16863,
+    "percentageRural" : 97
   },
   {
     "countycode": 51077,
     "countyname": "Grayson County",
     "ratio": 0.57,
     "downloadSpeed" : 9.87,
-    "population" : 17917
+    "population" : 17917,
+    "percentageRural" : 99.9
   },
   {
     "countycode": 51079,
     "countyname": "Greene County",
     "ratio": 0.82,
     "downloadSpeed" : 11.95,
-    "population" : 15244
+    "population" : 15244,
+    "percentageRural" : 51.2
   },
   {
     "countycode": 51081,
     "countyname": "Greensville County",
     "ratio": 0.29,
     "downloadSpeed" : 3.12,
-    "population" : 11560
+    "population" : 11560,
+    "percentageRural" : 87
   },
   {
     "countycode": 51083,
     "countyname": "Halifax County",
     "ratio": 0.49,
     "downloadSpeed" : 6.87,
-    "population" : 37355
+    "population" : 37355,
+    "percentageRural" : 77.1
 
   },
   {
@@ -292,650 +333,743 @@
     "countyname": "Hanover County",
     "ratio": 0.81,
     "downloadSpeed" : 13.85,
-    "population" : 86320
+    "population" : 86320,
+    "percentageRural" : 39.1
   },
   {
     "countycode": 51087,
     "countyname": "Henrico County",
     "ratio": -9999,
     "downloadSpeed" : 8.06,
-    "population" : 262300
+    "population" : 262300,
+    "percentageRural" : 4.3
   },
   {
     "countycode": 51089,
     "countyname": "Henry County",
     "ratio": 0.62,
     "downloadSpeed" : 9.69,
-    "population" : 57903
+    "population" : 57903,
+    "percentageRural" : 60.7
   },
   {
     "countycode": 51091,
     "countyname": "Highland County",
     "ratio": 0.81,
     "downloadSpeed" : 14.61,
-    "population" : 2536
+    "population" : 2536,
+    "percentageRural" : 100
   },
   {
     "countycode": 51093,
     "countyname": "Isle of Wight County",
     "ratio": 0.67,
     "downloadSpeed" : 10.13,
-    "population" : 29728
+    "population" : 29728,
+    "percentageRural" : 57.4
   },
   {
     "countycode": 51095,
     "countyname": "James City County",
     "ratio": -9999,
     "downloadSpeed" : 12.11,
-    "population" : 48102
+    "population" : 48102,
+    "percentageRural" : 15.9
   },
   {
     "countycode": 51097,
     "countyname": "King and Queen County",
     "ratio": 0.31,
     "downloadSpeed" : 5.55,
-    "population" : 6630
+    "population" : 6630,
+    "percentageRural" : 100
   },
   {
     "countycode": 51099,
     "countyname": "King George County",
     "ratio": 0.76,
     "downloadSpeed" : 12.31,
-    "population" : 16803
+    "population" : 16803,
+    "percentageRural" : 73.2
   },
   {
     "countycode": 51101,
     "countyname": "King William County",
     "ratio": 0.4,
     "downloadSpeed" : 7.11,
-    "population" : 13146
+    "population" : 13146,
+    "percentageRural" : 83.2
   },
   {
     "countycode": 51103,
     "countyname": "Lancaster County",
     "ratio": 0.56,
     "downloadSpeed" : 8.60,
-    "population" : 11567
+    "population" : 11567,
+    "percentageRural" : 100
   },
   {
     "countycode": 51105,
     "countyname": "Lee County",
     "ratio": 0.48,
     "downloadSpeed" : 8.44,
-    "population" : 23589
+    "population" : 23589,
+    "percentageRural" : 99.6
   },
   {
     "countycode": 51107,
     "countyname": "Loudoun County",
     "ratio": 0.99,
     "downloadSpeed" : 15.10,
-    "population" : 169599
+    "population" : 169599,
+    "percentageRural" : 12.6
   },
   {
     "countycode": 51109,
     "countyname": "Louisa County",
     "ratio": 0.44,
     "downloadSpeed" : 8.10,
-    "population" : 25672
+    "population" : 25672,
+    "percentageRural" : 100
   },
   {
     "countycode": 51111,
     "countyname": "Lunenburg County",
     "ratio": 0.47,
     "downloadSpeed" : 8.34,
-    "population" : 13146
+    "population" : 13146,
+    "percentageRural" : 100
   },
   {
     "countycode": 51113,
     "countyname": "Madison County",
     "ratio": 0.58,
     "downloadSpeed" : 9.05,
-    "population" : 12520
+    "population" : 12520,
+    "percentageRural" : 100
   },
   {
     "countycode": 51115,
     "countyname": "Mathews County",
     "ratio": 0.55,
     "downloadSpeed" : 9.00,
-    "population" : 9207
+    "population" : 9207,
+    "percentageRural" : 100
   },
   {
     "countycode": 51117,
     "countyname": "Mecklenburg County",
     "ratio": 0.51,
     "downloadSpeed" : 8.49,
-    "population" : 32380
+    "population" : 32380,
+    "percentageRural" : 77.8
   },
   {
     "countycode": 51119,
     "countyname": "Middlesex County",
     "ratio": 0.72,
     "downloadSpeed" : 13.33,
-    "population" : 9932
+    "population" : 9932,
+    "percentageRural" : 100
   },
   {
     "countycode": 51121,
     "countyname": "Montgomery County",
     "ratio": 0.75,
     "downloadSpeed" : 12.55,
-    "population" : 83627
+    "population" : 83627,
+    "percentageRural" : 24.9
   },
   {
     "countycode": 51125,
     "countyname": "Nelson County",
     "ratio": 0.69,
     "downloadSpeed" : 10.01,
-    "population" : 14445
+    "population" : 14445,
+    "percentageRural" : 100
   },
   {
     "countycode": 51127,
     "countyname": "New Kent County",
     "ratio": 0.79,
     "downloadSpeed" : 14.11,
-    "population" : 13462
+    "population" : 13462,
+    "percentageRural" : 100
   },
   {
     "countycode": 51131,
     "countyname": "Northampton County",
     "ratio": 0.6,
     "downloadSpeed" : 10.30,
-    "population" : 13093
+    "population" : 13093,
+    "percentageRural" : 100
   },
   {
     "countycode": 51133,
     "countyname": "Northumberland County",
     "ratio": 0.52,
     "downloadSpeed" : 9.01,
-    "population" : 12259
+    "population" : 12259,
+    "percentageRural" : 100
   },
   {
     "countycode": 51135,
     "countyname": "Nottoway County",
     "ratio": 0.49,
     "downloadSpeed" : 8.49,
-    "population" : 15725
+    "population" : 15725,
+    "percentageRural" : 52.3
   },
   {
     "countycode": 51137,
     "countyname": "Orange County",
     "ratio": 0.68,
     "downloadSpeed" : 12.68,
-    "population" : 25881
+    "population" : 25881,
+    "percentageRural" : 57.8
   },
   {
     "countycode": 51139,
     "countyname": "Page County",
     "ratio": 0.64,
     "downloadSpeed" : 10.00,
-    "population" : 23177
+    "population" : 23177,
+    "percentageRural" : 80.2
   },
   {
     "countycode": 51141,
     "countyname": "Patrick County",
     "ratio": 0.7,
     "downloadSpeed" : 11.50,
-    "population" : 19407
+    "population" : 19407,
+    "percentageRural" : 100
   },
   {
     "countycode": 51143,
     "countyname": "Pittsylvania County",
     "ratio": 0.54,
     "downloadSpeed" : 9.12,
-    "population" : 61745
+    "population" : 61745,
+    "percentageRural" : 85.6
   },
   {
     "countycode": 51145,
     "countyname": "Powhatan County",
     "ratio": 0.81,
     "downloadSpeed" : 13.81,
-    "population" : 22377
+    "population" : 22377,
+    "percentageRural" : 99.7
   },
   {
     "countycode": 51147,
     "countyname": "Prince Edward County",
     "ratio": 0.58,
     "downloadSpeed" : 9.04,
-    "population" : 19720
+    "population" : 19720,
+    "percentageRural" : 63.2
   },
   {
     "countycode": 51149,
     "countyname": "Prince George County",
     "ratio": 0.7,
     "downloadSpeed" : 11.31,
-    "population" : 33047
+    "population" : 33047,
+    "percentageRural" : 53.4
   },
   {
     "countycode": 51153,
     "countyname": "Prince William County",
     "ratio": 1,
     "downloadSpeed" : 15.00,
-    "population" : 280813
+    "population" : 280813,
+    "percentageRural" : 4.2
   },
   {
     "countycode": 51155,
     "countyname": "Pulaski County",
     "ratio": 0.58,
     "downloadSpeed" : 8.45,
-    "population" : 35127
+    "population" : 35127,
+    "percentageRural" : 46.9
   },
   {
     "countycode": 51157,
     "countyname": "Rappahannock County",
     "ratio": 0.69,
     "downloadSpeed" : 9.87,
-    "population" : 6983
+    "population" : 6983,
+    "percentageRural" : 100
   },
   {
     "countycode": 51159,
     "countyname": "Richmond County",
     "ratio": 0.45,
     "downloadSpeed" : 7.89,
-    "population" : 8809
+    "population" : 8809,
+    "percentageRural" : 100
   },
   {
     "countycode": 51161,
     "countyname": "Roanoke County",
     "ratio": 0.8,
     "downloadSpeed" : 12.65,
-    "population" : 85778
+    "population" : 85778,
+    "percentageRural" : 18.5
   },
   {
     "countycode": 51163,
     "countyname": "Rockbridge County",
     "ratio": 0.52,
     "downloadSpeed" : 8.75,
-    "population" : 20808
+    "population" : 20808,
+    "percentageRural" : 91.6
   },
   {
     "countycode": 51165,
     "countyname": "Rockingham County",
     "ratio": 0.6,
     "downloadSpeed" : 9.78,
-    "population" : 67725
+    "population" : 67725,
+    "percentageRural" : 59.3
   },
   {
     "countycode": 51167,
     "countyname": "Russell County",
     "ratio": 0.44,
     "downloadSpeed" : 6.88,
-    "population" : 30308
+    "population" : 30308,
+    "percentageRural" : 88.2
   },
   {
     "countycode": 51169,
     "countyname": "Scott County",
     "ratio": 1.03,
     "downloadSpeed" : 7.99,
-    "population" : 23403
+    "population" : 23403,
+    "percentageRural" : 82.1
   },
   {
     "countycode": 51171,
     "countyname": "Shenandoah County",
     "ratio": -9999,
     "downloadSpeed" : 10.21,
-    "population" : 350705
+    "population" : 350705,
+    "percentageRural" : 66.6
   },
   {
     "countycode": 51173,
     "countyname": "Smyth County",
     "ratio": 0.66,
     "downloadSpeed" : 8.75,
-    "population" : 33081
+    "population" : 33081,
+    "percentageRural" : 75.3
   },
   {
     "countycode": 51175,
     "countyname": "Southampton County",
     "ratio": 0.45,
     "downloadSpeed" : 7.55,
-    "population" : 17482
+    "population" : 17482,
+    "percentageRural" : 98
   },
   {
     "countycode": 51177,
     "countyname": "Spotsylvania County",
     "ratio": 0.91,
     "downloadSpeed" : 13.97,
-    "population" : 90395
+    "population" : 90395,
+    "percentageRural" : 32.3
   },
   {
     "countycode": 51179,
     "countyname": "Stafford County",
     "ratio": 0.98,
     "downloadSpeed" : 14.65,
-    "population" : 92446
+    "population" : 92446,
+    "percentageRural" : 19.8
   },
   {
     "countycode": 51181,
     "countyname": "Surry County",
     "ratio": -9999,
     "downloadSpeed" : 4.75,
-    "population" : 6829
+    "population" : 6829,
+    "percentageRural" : 100
   },
   {
     "countycode": 51183,
     "countyname": "Sussex County",
     "ratio": 0.39,
     "downloadSpeed" : 5.21,
-    "population" : 12504
+    "population" : 12504,
+    "percentageRural" : 100
   },
   {
     "countycode": 51185,
     "countyname": "Tazewell County",
     "ratio": 0.54,
     "downloadSpeed" : 8.60,
-    "population" : 44598
+    "population" : 44598,
+    "percentageRural" : 51.9
   },
   {
     "countycode": 51187,
     "countyname": "Warren County",
     "ratio": 0.81,
     "downloadSpeed" : 12.12,
-    "population" : 31584
+    "population" : 31584,
+    "percentageRural" : 50.4
   },
   {
     "countycode": 51191,
     "countyname": "Washington County",
     "ratio": 0.68,
     "downloadSpeed" : 9.50,
-    "population" : 51103
+    "population" : 51103,
+    "percentageRural" : 71.7
   },
   {
     "countycode": 51193,
     "countyname": "Westmoreland County",
     "ratio": 0.67,
     "downloadSpeed" : 7.15,
-    "population" : 16718
+    "population" : 16718,
+    "percentageRural" : 78.8
   },
   {
     "countycode": 51195,
     "countyname": "Wise County",
     "ratio": 0.68,
     "downloadSpeed" : 11.00,
-    "population" : 40123
+    "population" : 40123,
+    "percentageRural" : 56.7
   },
   {
     "countycode": 51197,
     "countyname": "Wythe County",
     "ratio": 0.67,
     "downloadSpeed" : 8.00,
-    "population" : 27599
+    "population" : 27599,
+    "percentageRural" : 75.3
   },
   {
     "countycode": 51199,
     "countyname": "York County",
     "ratio": -9999,
     "downloadSpeed" : 6.50,
-    "population" : 56297
+    "population" : 56297,
+    "percentageRural" : 6.1
   },
   {
     "countycode": 51510,
     "countyname": "Alexandria City",
     "ratio": -9999,
     "downloadSpeed" : 15.30,
-    "population" : 128283
+    "population" : 128283,
+    "percentageRural" : 0
   },
   {
     "countycode": 51515,
     "countyname": "Bedford City",
     "ratio": -9999,
     "downloadSpeed" : 9.58,
-    "population" : 6299
+    "population" : 6299,
+    "percentageRural" : 2.1
   },
   {
     "countycode": 51520,
     "countyname": "Bristol City",
     "ratio": 0.66,
     "downloadSpeed" : 9.00,
-    "population" : 17367
+    "population" : 17367,
+    "percentageRural" : 0
   },
   {
     "countycode": 51530,
     "countyname": "Buena Vista City",
     "ratio": 0.59,
     "downloadSpeed" : 12.00,
-    "population" : 6349
+    "population" : 6349,
+    "percentageRural" : 3.9
   },
   {
     "countycode": 51540,
     "countyname": "Charlottesville City",
     "ratio": 0.75,
     "downloadSpeed" : 15.00,
-    "population" : 45049
+    "population" : 45049,
+    "percentageRural" : 0
   },
   {
     "countycode": 51550,
     "countyname": "Chesapeake City",
     "ratio": -9999,
     "downloadSpeed" : 12.10,
-    "population" : 199184
+    "population" : 199184,
+    "percentageRural" : 7.6
   },
   {
     "countycode": 51570,
     "countyname": "Colonial Heights City",
     "ratio": -9999,
     "downloadSpeed" : 13.00,
-    "population" : 16897
+    "population" : 16897,
+    "percentageRural" : 0
   },
   {
     "countycode": 51580,
     "countyname": "Covington City",
     "ratio": -9999,
     "downloadSpeed" : 10.01,
-    "population" : 6303
+    "population" : 6303,
+    "percentageRural" : 0
   },
   {
     "countycode": 51590,
     "countyname": "Danville City",
     "ratio": 0.57,
     "downloadSpeed" : 7.35,
-    "population" : 48411
+    "population" : 48411,
+    "percentageRural" : 4.5
   },
   {
     "countycode": 51595,
     "countyname": "Emporia City",
     "ratio": 0.37,
     "downloadSpeed" : 5.85,
-    "population" : 5665
+    "population" : 5665,
+    "percentageRural" : 6.3
   },
   {
     "countycode": 51600,
     "countyname": "Fairfax City",
     "ratio": -9999,
     "downloadSpeed" : 14.60,
-    "population" : 21498
+    "population" : 21498,
+    "percentageRural" : 0
   },
   {
     "countycode": 51610,
     "countyname": "Falls Church City",
     "ratio": 0.86,
     "downloadSpeed" : 15.85,
-    "population" : 10377
+    "population" : 10377,
+    "percentageRural" : 0
   },
   {
     "countycode": 51620,
     "countyname": "Franklin City",
     "ratio": -9999,
     "downloadSpeed" : 9.05,
-    "population" : 8346
+    "population" : 8346,
+    "percentageRural" : 3.3
   },
   {
     "countycode": 51630,
     "countyname": "Fredericksburg City",
     "ratio": 0.91,
     "downloadSpeed" : 14.67,
-    "population" : 19279
+    "population" : 19279,
+    "percentageRural" : 1.2
   },
   {
     "countycode": 51640,
     "countyname": "Galax City",
     "ratio": 0.62,
     "downloadSpeed" : 9.65,
-    "population" : 6837
+    "population" : 6837,
+    "percentageRural" : 13.7
   },
   {
     "countycode": 51650,
     "countyname": "Hampton City",
     "ratio": -9999,
     "downloadSpeed" : 5.89,
-    "population" : 146437
+    "population" : 146437,
+    "percentageRural" : 0.2
   },
   {
     "countycode": 51660,
     "countyname": "Harrisonburg City",
     "ratio": 0.76,
     "downloadSpeed" : 11.00,
-    "population" : 40468
+    "population" : 40468,
+    "percentageRural" : 0
   },
   {
     "countycode": 51670,
     "countyname": "Hopewell City",
     "ratio": 0.64,
     "downloadSpeed" : 9.05,
-    "population" : 22354
+    "population" : 22354,
+    "percentageRural" : 0
   },
   {
     "countycode": 51678,
     "countyname": "Lexington City",
     "ratio": 0.91,
     "downloadSpeed" : 14.96,
-    "population" : 6867
+    "population" : 6867,
+    "percentageRural" : 0
   },
   {
     "countycode": 51680,
     "countyname": "Lynchburg City",
     "ratio": 0.73,
     "downloadSpeed" : 13.05,
-    "population" : 65269
+    "population" : 65269,
+    "percentageRural" : 2.7
   },
   {
     "countycode": 51683,
     "countyname": "Manassas City",
     "ratio": -9999,
     "downloadSpeed" : 12.00,
-    "population" : 35135
+    "population" : 35135,
+    "percentageRural" : 0
   },
   {
     "countycode": 51685,
     "countyname": "Manassas Park City",
     "ratio": -9999,
     "downloadSpeed" : 11.89,
-    "population" : 10290
+    "population" : 10290,
+    "percentageRural" : 0
   },
   {
     "countycode": 51690,
     "countyname": "Martinsville City",
     "ratio": -9999,
     "downloadSpeed" : 9.13,
-    "population" : 15416
+    "population" : 15416,
+    "percentageRural" : 0
   },
   {
     "countycode": 51700,
     "countyname": "Newport News City",
     "ratio": -9999,
     "downloadSpeed" : 11.00,
-    "population" : 180150
+    "population" : 180150,
+    "percentageRural" : 0
   },
   {
     "countycode": 51710,
     "countyname": "Norfolk City",
     "ratio": -9999,
     "downloadSpeed" : 9.05,
-    "population" : 234403
+    "population" : 234403,
+    "percentageRural" : 0
   },
   {
     "countycode": 51720,
     "countyname": "Norton City",
     "ratio": 0.65,
     "downloadSpeed" : 9.05,
-    "population" : 3904
+    "population" : 3904,
+    "percentageRural" : 2.6
   },
   {
     "countycode": 51730,
     "countyname": "Petersburg City",
     "ratio": -9999,
     "downloadSpeed" : 9.01,
-    "population" : 33740
+    "population" : 33740,
+    "percentageRural" : 2.1
   },
   {
     "countycode": 51735,
     "countyname": "Poquoson City",
     "ratio": -9999,
     "downloadSpeed" : 7.65,
-    "population" : 11566
+    "population" : 11566,
+    "percentageRural" : 6.5
   },
   {
     "countycode": 51740,
     "countyname": "Portsmouth City",
     "ratio": -9999,
     "downloadSpeed" : 9.50,
-    "population" : 100565
+    "population" : 100565,
+    "percentageRural" : 0
   },
   {
     "countycode": 51750,
     "countyname": "Radford City",
     "ratio": 0.74,
     "downloadSpeed" : 10.00,
-    "population" : 15859
+    "population" : 15859,
+    "percentageRural" : 2.9
   },
   {
     "countycode": 51760,
     "countyname": "Richmond City",
     "ratio": -9999,
     "downloadSpeed" : 12.10,
-    "population" : 197790
+    "population" : 197790,
+    "percentageRural" : 0
   },
   {
     "countycode": 51770,
     "countyname": "Roanoke City",
     "ratio": -9999,
     "downloadSpeed" : 12.50,
-    "population" : 94911
+    "population" : 94911,
+    "percentageRural" : 0
   },
   {
     "countycode": 51775,
     "countyname": "Salem City",
     "ratio": 0.76,
     "downloadSpeed" : 10.05,
-    "population" : 24747
+    "population" : 24747,
+    "percentageRural" : 0
   },
   {
     "countycode": 51790,
     "countyname": "Staunton City",
     "ratio": 0.71,
     "downloadSpeed" : 11.00,
-    "population" : 23853
+    "population" : 23853,
+    "percentageRural" : 3.7
   },
   {
     "countycode": 51800,
     "countyname": "Suffolk City",
     "ratio": 0.75,
     "downloadSpeed" : 9.99,
-    "population" : 63677
+    "population" : 63677,
+    "percentageRural" : 21.6
   },
   {
     "countycode": 51810,
     "countyname": "Virginia Beach City",
     "ratio": -9999,
     "downloadSpeed" : 13.05,
-    "population" : 425257
+    "population" : 425257,
+    "percentageRural" : 1.5
   },
   {
     "countycode": 51820,
     "countyname": "Waynesboro City",
     "ratio": -9999,
     "downloadSpeed" : 10.87,
-    "population" : 19520
+    "population" : 19520,
+    "percentageRural" : 2.5
   },
   {
     "countycode": 51830,
     "countyname": "Williamsburg City",
     "ratio": -9999,
     "downloadSpeed" : 10.00,
-    "population" : 11998
+    "population" : 11998,
+    "percentageRural" : 0
   },
   {
     "countycode": 51840,
     "countyname": "Winchester City",
     "ratio": -9999,
     "downloadSpeed" : 8.55,
-    "population" : 23585
+    "population" : 23585,
+    "percentageRural" : 0
   }
 ]
