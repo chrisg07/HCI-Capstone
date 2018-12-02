@@ -1,35 +1,62 @@
-.card {
-    display: flex;
-    width: 100%;
-    justify-content: space-evenly;
-
-    .leftCounty {
-        width: 400px;
-        height: 400px;
-    }
-
-    .question {
+.countyComparisonCard {
+    margin: 20px 0 20px 0; 
+    border: solid 1px black;
+    padding: 10px;
+    
+    .autocompleteDropdownContainer {
         display: flex;
-        flex-direction: column;
-        justify-content: center;
-        text-align: center;
-        text-align-last: center;
-        width: 30%;
-        font-size: 30px;
-        line-height: 1.2em;
+        width: 100%;
 
-        .answers {
-            font-size: 16px;
-            margin-bottom: 20px;
+        form {
+            width: 100%;
 
-            .answer {
-                width: 50%;
+            mat-form-field {
+            width: 80%;
+            }
+        }
+
+        .secondCounty-form {
+            mat-form-field {
+                float: right;
             }
         }
     }
 
-    .rightCounty{
-        width: 400px;
-        height: 400px;
+   
+
+    .countyComparisonContainer {
+        display: flex;
+        width: 100%;
+        padding-top: 20px;
+
+        .leftCountyContainer {
+            width: 25%;
+        }
+
+        .questions {
+            width: 50%;
+            padding: 0 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            p:not(:first-child) {
+                padding-top: 10px;
+            }
+
+            p {
+                text-align: center;
+                text-align-last: center;
+            }
+        }
+
+        .rightCountyDataContainer {
+            width: 25%;
+        }
     }
+}
+
+.button {
+    height: 20px !important;
 }

@@ -1,12 +1,83 @@
-<div class='card mat-typography'>
-  <div class="leftCounty{{uniqueID}}"></div>
-  <div class='question'>
+<div class='countyComparisonCard'>
+  <div class='autocompleteDropdownContainer'>
+    <form class="firstCounty-form">
+        <mat-form-field>
+            <input type="text" placeholder="Select a county" aria-label="Number" matInput [formControl]="firstCountyControl" [matAutocomplete]="firstCountyAutocomplete">
+            <mat-autocomplete #firstCountyAutocomplete="matAutocomplete">
+                <mat-option *ngFor="let option of firstCountyFilteredOptions | async" [value]="option">
+                {{option}}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </form>
+    <form class="secondCounty-form">
+        <mat-form-field>
+            <input type="text" placeholder="Select another county" aria-label="Number" matInput [formControl]="secondCountyControl" [matAutocomplete]="secondCountyAutocomplete">
+            <mat-autocomplete #secondCountyAutocomplete="matAutocomplete">
+                <mat-option *ngFor="let option of secondCountyFilteredOptions | async" [value]="option">
+                {{option}}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </form>
+  </div>
+  <div class='countyComparisonContainer mat-typography'>
+    <div class='leftCountyContainer'>
+        
+    </div>
+    <div class='questions'>
+      <ng-container *ngIf='currentFirstCountyName && currentSecondCountyName'>
+        <p>Which county has a higher percentage of households with access to Internet greater than 200 kbps?</p>
+        <mat-button-toggle-group class='answers' name="fontStyle" aria-label="Font Style">
+            <mat-button-toggle class='answer' 
+              [ngClass]="{'correct': leftHouseholdAnswerIsCorrect === true, 'incorrect': leftHouseholdAnswerIsCorrect === false}" 
+              (click)="answerHouseholdAccessQuestion()">
+              {{currentFirstCountyName}}
+            </mat-button-toggle>
+            <mat-button-toggle class='answer' 
+              [ngClass]="{'correct': leftHouseholdAnswerIsCorrect === false, 'incorrect': leftHouseholdAnswerIsCorrect === true}"
+              (click)="answerHouseholdAccessQuestion()">
+              {{currentSecondCountyName}}
+            </mat-button-toggle>
+        </mat-button-toggle-group> 
+        <p>Which county has a greater population?</p>
+        <mat-button-toggle-group class='answers' name="fontStyle" aria-label="Font Style">
+            <mat-button-toggle class='answer' 
+              [ngClass]="{'correct': leftPopulationAnswerIsCorrect === true, 'incorrect': leftPopulationAnswerIsCorrect === false}" 
+              (click)="answerPopulationQuestion()">
+              {{currentFirstCountyName}}
+            </mat-button-toggle>
+            <mat-button-toggle class='answer' 
+              [ngClass]="{'correct': leftPopulationAnswerIsCorrect === false, 'incorrect': leftPopulationAnswerIsCorrect === true}"
+              (click)="answerPopulationQuestion()">
+              {{currentSecondCountyName}}
+            </mat-button-toggle>
+        </mat-button-toggle-group> 
+        <p>In which county would you find a greater portion of its residents in a rural area?</p>
+        <mat-button-toggle-group class='answers' name="fontStyle" aria-label="Font Style">
+            <mat-button-toggle class='answer' 
+              [ngClass]="{'correct': leftRuralAnswerIsCorrect === true, 'incorrect': leftRuralAnswerIsCorrect === false}" 
+              (click)="answerRuralQuestion()">
+              {{currentFirstCountyName}}
+            </mat-button-toggle>
+            <mat-button-toggle class='answer' 
+              [ngClass]="{'correct': leftRuralAnswerIsCorrect === false, 'incorrect': leftRuralAnswerIsCorrect === true}"
+              (click)="answerRuralQuestion()">
+              {{currentSecondCountyName}}
+            </mat-button-toggle>
+        </mat-button-toggle-group> 
+      </ng-container>
+    </div>
+    <div class='rightCountyContainer'>
+        
+    </div>
+  </div>
+</div>
+<!--
     <p>{{ question }}</p>
     <mat-button-toggle-group class='answers' name="fontStyle" aria-label="Font Style">
       <mat-button-toggle class='answer' (click)="answerQuestion(leftCountyName)">{{leftCountyName}}</mat-button-toggle>
       <mat-button-toggle class='answer' (click)="answerQuestion(rightCountyName)">{{rightCountyName}}</mat-button-toggle>
     </mat-button-toggle-group> 
     <p>{{ correct }}</p>
-  </div>
-  <div class="rightCounty{{uniqueID}}"></div>
-</div>
+-->

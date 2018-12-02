@@ -5,11 +5,27 @@ html {
     background: #fff;
 }
 
-
-mat-form-field.mat-form-field {
-    border: solid 1px black;
-}
-
 mat-toolbar-row.mat-toolbar-row {
     background: #8c2d04;
+}
+
+mat-button-toggle {
+    height: 20px;
+    padding: 0;
+    min-height: 0;
+}
+
+mat-button-toggle.correct {
+    background-color: green;
+}
+
+mat-button-toggle.incorrect {
+    background-color: red;
+}
+
+
+.mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
+    line-height: 20px !important;
+    font-size: 12px !important;
+    height: 20px;
 }
