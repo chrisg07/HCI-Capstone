@@ -353,7 +353,7 @@ export class BodyComponent implements OnInit, AfterViewInit {
       .attr('stroke-linecap', 'round');
 }
 
-  private updateStateMap(mapType: string) {
+  public updateStateMap(mapType: string) {
     console.log(mapType)
     this.currentStateMap = mapType;
     this.stateWidth = window.innerWidth * .75;
